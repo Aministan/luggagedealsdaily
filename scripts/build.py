@@ -238,6 +238,10 @@ table{width:100%;border-collapse:collapse;background:#fff}
 th,td{text-align:left;padding:10px;border-bottom:1px solid #eee;vertical-align:top}
 .chips a{display:inline-block;margin:4px;padding:4px 10px;border-radius:99px;background:#fff;border:1px solid #e3ddd6;text-decoration:none;font-size:14px}
 .note{background:#fff8e8;border:1px solid #ead9a6;border-radius:10px;padding:10px 12px}
+.bf-banner{background:#14324a;color:#fff;border-radius:14px;padding:14px 16px;margin:0 0 16px}
+.bf-banner a{color:#fff}
+.bf-banner .btn{background:#e2c48a;color:#14324a;margin-top:8px}
+header a.nav-bf{background:#e2c48a;color:#14324a;border-radius:999px;padding:2px 10px;font-weight:800}
 footer{max-width:1100px;margin:20px auto;padding:16px;font-size:13px;color:#5c564e}
 .crumbs{font-size:13px;color:#6c655d;margin:0 0 8px}
 .crumbs a{text-decoration:none}
@@ -290,6 +294,7 @@ def page(path, title, desc, body, jsonld=None, index=True, crumbs_html=""):
     )
     robots = "" if index else '<meta name="robots" content="noindex">'
     nav = (
+        f'<a class="nav-bf" href="{site_href("black-friday-luggage-deals")}">Black Friday</a>'
         f'<a href="{site_href("")}">Deals</a>'
         f'<a href="{site_href("carry-on")}">Carry-ons</a>'
         f'<a href="{site_href("checked")}">Checked</a>'
@@ -888,6 +893,9 @@ def home():
         "<h1>Luggage deals with the price above the photo</h1>"
         "<p class='sub'>Carry-ons, checked bags, and travel accessories from Travelpro, LEVEL8, Horizn Studios, and Stuart &amp; Lau. "
         "Famous names such as Away and Monos are comparison pages, not affiliate offers.</p>"
+        f"<div class='bf-banner'><p style='margin:0 0 6px'><b>Black Friday 2026 is Friday, November 27.</b> Cyber Monday is November 30.</p>"
+        f"<p style='margin:0'>The largest gaps versus each product's own compare-at are on one page. Horizn prices stay in euros.</p>"
+        f"<a class='btn' href='{site_href('black-friday-luggage-deals')}'>Black Friday luggage deals</a></div>"
         "<h2>Lowest checked carry-on prices</h2>"
         "<div class='grid' style='grid-template-columns:repeat(auto-fit,minmax(240px,1fr))'>" + fold_html + "</div>"
         + sections
@@ -913,6 +921,152 @@ def home():
 
 def sort_price(rows):
     return sorted(rows, key=lambda p: (0 if resolved_currency(p) == "USD" else 1, resolved_price(p) or 10**9, p["id"]))
+
+
+def savings_amount(product):
+    """Compare-at minus listed price, only when both numbers are already stored and the compare-at is higher."""
+    price = resolved_price(product)
+    was = compare_at(product)
+    if price is None or was is None:
+        return None
+    return round(was - price, 2)
+
+
+def money_amount(amount, currency):
+    if currency == "USD":
+        return f"${amount:,.2f}"
+    if currency == "EUR":
+        return f"€{amount:,.2f}"
+    raise SystemExit(f"unknown currency {currency}")
+
+
+def deals_with_savings():
+    """Biggest stored gap first, dollars as a group, then euros. No currency conversion."""
+    rows = [p for p in PRODUCTS if savings_amount(p) is not None and plain_product_url(p)]
+    rows.sort(key=lambda p: (
+        0 if resolved_currency(p) == "USD" else 1,
+        -savings_amount(p),
+        p["id"],
+    ))
+    return rows
+
+
+def black_friday_page():
+    use_sid("bf", "black-friday-luggage-deals")
+    ranked = deals_with_savings()
+    if not ranked:
+        raise SystemExit("black friday page has no stored savings")
+    usd = [p for p in ranked if resolved_currency(p) == "USD"]
+    eur = [p for p in ranked if resolved_currency(p) == "EUR"]
+    top_usd = max(usd, key=savings_amount) if usd else None
+    top_eur = max(eur, key=savings_amount) if eur else None
+    crumb_html, crumb_ld = crumbs([
+        (site_href(""), "Deals"),
+        (None, "Black Friday"),
+    ])
+    rank_rows = []
+    for p in ranked:
+        gap = savings_amount(p)
+        rank_rows.append(
+            "<tr>"
+            f"<td><a href='{site_href('luggage/'+p['id'])}'>{e(display_name(p))}</a>"
+            f"<div class='meta'>{e(merchant_name(p))}</div></td>"
+            f"<td><b>{e(money(p))}</b></td>"
+            f"<td>{e(compare_text(p))}</td>"
+            f"<td>{e(money_amount(gap, resolved_currency(p)))}</td>"
+            f"<td>{ext_a(p, 'table', button_label(p), cls='')}</td>"
+            "</tr>"
+        )
+    groups = [
+        ("Carry-on", [p for p in PRODUCTS if p["category"] == "carry-on"]),
+        ("Checked", [p for p in PRODUCTS if p["category"] == "checked"]),
+        ("Sets", []),
+        ("Bags", [p for p in PRODUCTS if p["category"] in ("underseat", "backpack", "weekender", "duffel", "packing-cube")]),
+    ]
+    sections = ""
+    linked = 0
+    for heading, rows in groups:
+        rows = sorted(rows, key=lambda p: (
+            0 if savings_amount(p) is not None else 1,
+            0 if resolved_currency(p) == "USD" else 1,
+            -(savings_amount(p) or 0),
+            resolved_price(p) or 10**9,
+            p["id"],
+        ))
+        if heading == "Sets" and not rows:
+            sections += (
+                "<h2>Sets</h2>"
+                "<p>The catalog has no luggage set with a checked price, so this section does not list one. "
+                "Packing-cube sets are with bags.</p>"
+            )
+            continue
+        bits = []
+        for p in rows:
+            shown = money(p)
+            gap = savings_amount(p)
+            extra = ""
+            if shown and gap is not None:
+                extra = f" · {e(shown)} · {e(money_amount(gap, resolved_currency(p)))} under compare-at"
+            elif shown:
+                extra = f" · {e(shown)}"
+            else:
+                extra = " · no verified price"
+            bits.append(f"<li><a href='{site_href('luggage/'+p['id'])}'>{e(display_name(p))}</a>{extra}</li>")
+            linked += 1
+        sections += f"<h2>{e(heading)}</h2><ul>{''.join(bits)}</ul>"
+    faqs = [
+        (
+            "When is Black Friday 2026?",
+            "Black Friday 2026 is Friday, November 27. Cyber Monday is Monday, November 30.",
+        ),
+        (
+            "Are these Black Friday sale prices?",
+            f"No. They are the listed price and the compare-at already stored from each merchant page on {checked_label({'checked': CHECKED})}. The order is the size of that gap. It is not a forecast of the November 27 price.",
+        ),
+        (
+            "Which stored gap is the largest?",
+            (
+                (f"In dollars, {display_name(top_usd)} is listed at {money(top_usd)} against a {compare_text(top_usd)} compare-at, a gap of {money_amount(savings_amount(top_usd), 'USD')}. " if top_usd else "")
+                + (f"In euros, {display_name(top_eur)} is listed at {money(top_eur)} against a {compare_text(top_eur)} compare-at, a gap of {money_amount(savings_amount(top_eur), 'EUR')}. " if top_eur else "")
+                + "The two currencies are not converted or ranked against each other."
+            ),
+        ),
+        (
+            "Why are some Horizn prices in euros?",
+            "Horizn Studios' public cart currency is euros. This page shows that currency as stored and does not convert it to dollars.",
+        ),
+        (
+            "Where are the luggage sets?",
+            "No luggage set in the catalog has a checked price. Packing-cube sets are listed under bags.",
+        ),
+    ]
+    body = (
+        "<h1>Black Friday luggage deals 2026</h1>"
+        "<p>Black Friday 2026 is Friday, November 27. Cyber Monday is Monday, November 30. "
+        f"The table keeps every model whose catalog row already has both a listed price and a higher compare-at, checked {e(checked_label({'checked': CHECKED}))}. "
+        "Dollar gaps are listed before euro gaps. Nothing here is a predicted holiday percent off.</p>"
+        "<table><thead><tr><th>Model</th><th>Listed price</th><th>Compare-at</th><th>Gap</th><th></th></tr></thead><tbody>"
+        + "".join(rank_rows) + "</tbody></table>"
+        + sections
+        + "<h2>What to expect on Black Friday</h2>"
+        "<p>Luggage prices often move from Black Friday through Cyber Monday, sometimes more than once. "
+        "Open the merchant page that day and use the price printed there. "
+        "A compare-at on a product page is the merchant's own reference price, not a holiday rate this site promises. "
+        "Check the size, the model name, and the return window before you buy. "
+        "This page does not estimate a weekend percent off.</p>"
+        + faq_html(faqs)
+    )
+    title = "Black Friday Luggage Deals 2026"
+    desc = "Black Friday 2026 is November 27. Luggage deals ranked by the compare-at gap already stored, with Horizn prices kept in euros."
+    page(
+        "black-friday-luggage-deals",
+        title,
+        desc,
+        body,
+        [crumb_ld, faq_ld(faqs)],
+        crumbs_html=crumb_html,
+    )
+    print(f"black friday: {len(ranked)} priced gaps, {linked} model links")
 
 
 def hubs():
@@ -1164,13 +1318,31 @@ def write_meta():
             continue
         seen.add(url)
         urls.append(url)
-    sm = ['<?xml version="1.0" encoding="UTF-8"?>', '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
+    origin = f"{BASE}{PREFIX}"
+    sm_lines = [
+        '<?xml version="1.0" encoding="UTF-8"?>',
+        '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
+    ]
     for url in urls:
-        sm.append(f"<url><loc>{e(url)}</loc><lastmod>{today}</lastmod></url>")
-    sm.append("</urlset>\n")
+        if not url.startswith("https://") or not url.startswith(origin):
+            raise SystemExit(f"sitemap URL is not on the site origin: {url}")
+        # XML escaping only. html.escape also rewrites quotes, which a <loc> must not contain.
+        loc = (url.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;"))
+        sm_lines.append("  <url>")
+        sm_lines.append(f"    <loc>{loc}</loc>")
+        sm_lines.append(f"    <lastmod>{today}</lastmod>")
+        sm_lines.append("  </url>")
+    sm_lines.append("</urlset>")
+    sm_lines.append("")
     with open(os.path.join(OUT, "sitemap.xml"), "w", encoding="utf-8") as handle:
-        handle.write("".join(sm))
-    robots = f"User-agent: *\nAllow: /\nSitemap: {BASE}{PREFIX}/sitemap.xml\n"
+        handle.write("\n".join(sm_lines))
+    sitemap_url = origin + "/sitemap.xml"
+    robots = (
+        "User-agent: *\n"
+        "Allow: /\n"
+        "\n"
+        f"Sitemap: {sitemap_url}\n"
+    )
     with open(os.path.join(OUT, "robots.txt"), "w", encoding="utf-8") as handle:
         handle.write(robots)
     lines = [f"# {NAME}", f"# Owned by {OWNER}", f"# Prices checked {today}", ""]
@@ -1244,6 +1416,29 @@ def audit():
         raise SystemExit("sitemap missing luggage URLs")
     if "404" in sitemap:
         raise SystemExit("404 is in the sitemap")
+    bf_loc = f"{BASE}{PREFIX}/black-friday-luggage-deals/"
+    if f"<loc>{bf_loc}</loc>" not in sitemap:
+        raise SystemExit("sitemap missing the Black Friday page")
+    import xml.etree.ElementTree as ET
+    root = ET.fromstring(sitemap)
+    if root.tag != "{http://www.sitemaps.org/schemas/sitemap/0.9}urlset":
+        raise SystemExit(f"sitemap root is {root.tag}")
+    locs = [node.text or "" for node in root.findall("{http://www.sitemaps.org/schemas/sitemap/0.9}url/{http://www.sitemaps.org/schemas/sitemap/0.9}loc")]
+    if any(not loc.startswith(f"{BASE}{PREFIX}/") and loc != f"{BASE}{PREFIX}/" for loc in locs):
+        raise SystemExit("sitemap has a URL outside the site origin")
+    robots_txt = open(os.path.join(OUT, "robots.txt"), encoding="utf-8").read()
+    if f"Sitemap: {BASE}{PREFIX}/sitemap.xml\n" not in robots_txt:
+        raise SystemExit("robots.txt does not point at the sitemap")
+    if "Disallow" in robots_txt:
+        raise SystemExit("robots.txt disallows a path")
+    bf = open(os.path.join(OUT, "black-friday-luggage-deals", "index.html"), encoding="utf-8").read()
+    if "FAQPage" not in bf:
+        raise SystemExit("black friday page missing FAQPage")
+    if "What to expect on Black Friday" not in bf:
+        raise SystemExit("black friday page missing the expectations section")
+    home_html = open(os.path.join(OUT, "index.html"), encoding="utf-8").read()
+    if site_href("black-friday-luggage-deals") not in home_html or "nav-bf" not in home_html:
+        raise SystemExit("home or nav is missing the Black Friday link")
     print(f"built {deal_pages} luggage pages, {len(PAGES)} indexable URLs, origin {BASE}{PREFIX}/")
 
 
@@ -1260,6 +1455,7 @@ def main():
     brand_pages()
     static_pages()
     home()
+    black_friday_page()
     write_meta()
     audit()
 
