@@ -24,11 +24,9 @@ jobs:
       - name: Build site
         run: python3 scripts/build.py
         env:
-          # Project Pages URL is https://aministan.github.io/luggagedealsdaily/
-          # For luggagedealsdaily.com later: SITE_URL=https://luggagedealsdaily.com and PATH_PREFIX empty.
-          # Do not add a CNAME file until that domain is ready.
-          SITE_URL: https://aministan.github.io
-          PATH_PREFIX: /luggagedealsdaily
+          # Custom domain is set in Pages settings. No CNAME file in the artifact.
+          SITE_URL: https://luggagedealsdaily.com
+          PATH_PREFIX: ""
       - uses: actions/upload-pages-artifact@v3
         with:
           path: site

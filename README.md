@@ -2,7 +2,7 @@
 
 Static luggage and travel-accessory deals site owned by Amin Peracha. Built the same way as [ScentDealsDaily](https://github.com/Aministan/scentdealsdaily): one catalog, a Python build, and GitHub Pages.
 
-Live while this stays a project site: https://aministan.github.io/luggagedealsdaily/
+Live site: https://luggagedealsdaily.com/
 
 ## What is in the catalog
 
@@ -28,12 +28,12 @@ python3 scripts/test_links.py
 python3 scripts/build.py
 ```
 
-Defaults match the project site:
+Defaults match the custom domain:
 
-- `SITE_URL=https://aministan.github.io`
-- `PATH_PREFIX=/luggagedealsdaily`
+- `SITE_URL=https://luggagedealsdaily.com`
+- `PATH_PREFIX` empty
 
-For `luggagedealsdaily.com` later, build with `SITE_URL=https://luggagedealsdaily.com` and an empty `PATH_PREFIX`. Do not add a CNAME file until the domain is attached.
+The custom domain is configured in GitHub Pages settings. The build does not write a CNAME file.
 
 Output is `site/` (pages, `sitemap.xml`, `robots.txt`, `llms.txt`, `feed.xml`).
 

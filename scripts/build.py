@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 """Render data/catalog.json into site/.
 
-SITE_URL and PATH_PREFIX set the public origin. GitHub Pages for this repo is
-https://aministan.github.io/luggagedealsdaily/ (SITE_URL=https://aministan.github.io,
-PATH_PREFIX=/luggagedealsdaily). A later custom domain uses
-SITE_URL=https://luggagedealsdaily.com and PATH_PREFIX empty. No CNAME is written.
+SITE_URL and PATH_PREFIX set the public origin. The live site is
+https://luggagedealsdaily.com/ (SITE_URL=https://luggagedealsdaily.com,
+PATH_PREFIX empty). No CNAME file is written; the custom domain stays in
+GitHub Pages settings.
 """
 import datetime
 import html
@@ -26,10 +26,10 @@ PRODUCTS = CATALOG["products"]
 BY_ID = {p["id"]: p for p in PRODUCTS}
 OUTBOUND = CATALOG["outbound"]
 
-BASE = os.environ.get("SITE_URL", "https://aministan.github.io").strip()
+BASE = os.environ.get("SITE_URL", "https://luggagedealsdaily.com").strip()
 _parts = urllib.parse.urlsplit(BASE)
 BASE = urllib.parse.urlunsplit((_parts.scheme, _parts.netloc.lower(), _parts.path.rstrip("/"), "", "")).rstrip("/")
-PREFIX = os.environ.get("PATH_PREFIX", "/luggagedealsdaily").strip()
+PREFIX = os.environ.get("PATH_PREFIX", "").strip()
 if PREFIX in ("", "/"):
     PREFIX = ""
 else:
