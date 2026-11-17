@@ -209,12 +209,16 @@ def price_valid_until(product):
 
 CSS = """
 *{box-sizing:border-box}
-body{margin:0;font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:#1c2430;background:#f6f3ee}
+html{font-family:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+body{margin:0;font-family:inherit;font-size:16px;line-height:1.5;color:#1c2430;background:#f6f3ee}
+button,input,table,th,td{font-family:inherit}
 a{color:#1f4e79}
-header{background:#14324a;color:#fff;padding:14px 16px}
+header{background:#14324a;color:#fff;padding:14px 16px;display:flex;flex-wrap:wrap;align-items:center;gap:8px 16px}
 header a{color:#fff;text-decoration:none}
-.logo{font-weight:800;font-size:20px;letter-spacing:-.4px}.logo span{color:#e2c48a}
-nav{display:flex;gap:14px;flex-wrap:wrap;margin-top:6px;font-size:14px}
+.logo{font-weight:800;font-size:20px;letter-spacing:-.4px;margin-right:auto}.logo span{color:#e2c48a}
+.nav-toggle{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.nav-burger{display:none}
+nav{display:flex;gap:14px;flex-wrap:wrap;font-size:14px}
 main{max-width:1100px;margin:0 auto;padding:16px}
 h1{font-size:28px;line-height:1.2;margin:8px 0}
 h2{font-size:22px;line-height:1.25}
@@ -228,20 +232,19 @@ h2{font-size:22px;line-height:1.25}
 .btn{display:inline-block;text-align:center;background:#14324a;color:#fff;border-radius:10px;padding:12px 16px;text-decoration:none;font-weight:700}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px}
 .card{background:#fff;border:1px solid #e4ddd2;border-radius:14px;padding:12px;display:flex;flex-direction:column;min-width:0}
-.card img{display:block;width:100%;max-width:100%;height:190px;object-fit:contain;object-position:center;background:#f3efe8;border-radius:10px;margin:0 0 10px}
+.card img{display:block;width:100%;height:auto;aspect-ratio:1/1;object-fit:contain;object-position:center;background:#fff;border-radius:10px;margin:0 0 10px}
 .brand{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:#7a7480}
 .nm{font-weight:650;margin:2px 0 6px}
 .nm a{color:inherit;text-decoration:none}
 .card .btn{margin-top:auto}
-img.thumb{display:block;width:72px;height:72px;object-fit:contain;object-position:center;background:#f3efe8;border-radius:8px}
-td.thumb,th.thumb{width:88px;padding:8px;vertical-align:middle}
+img.thumb{display:block;width:72px;height:72px;aspect-ratio:1/1;object-fit:contain;object-position:center;background:#fff;border-radius:8px}
+td.thumb,th.thumb{width:88px;padding:8px;vertical-align:middle;background:#fff}
 .box{background:#fff;border:1px solid #e4ddd2;border-radius:14px;padding:16px;margin:18px 0}
 .hero-photo{background:#fff;border:1px solid #e4ddd2;border-radius:14px;padding:12px;margin:0 0 16px}
-.hero-photo img{display:block;width:100%;max-width:420px;height:auto;object-fit:contain;background:#f3efe8;border-radius:10px}
+.hero-photo img{display:block;width:min(100%,420px);height:auto;aspect-ratio:1/1;object-fit:contain;object-position:center;background:#fff;border-radius:10px}
 table{width:100%;border-collapse:collapse;background:#fff}
 th,td{text-align:left;padding:10px;border-bottom:1px solid #eee;vertical-align:top}
 .chips a{display:inline-block;margin:4px;padding:4px 10px;border-radius:99px;background:#fff;border:1px solid #e3ddd6;text-decoration:none;font-size:14px}
-.note{background:#fff8e8;border:1px solid #ead9a6;border-radius:10px;padding:10px 12px}
 .bf-banner{background:#14324a;color:#fff;border-radius:14px;padding:14px 16px;margin:0 0 16px}
 .bf-banner a{color:#fff}
 .bf-banner .btn{background:#e2c48a;color:#14324a;margin-top:8px}
@@ -251,20 +254,24 @@ footer{max-width:1100px;margin:20px auto;padding:16px;font-size:13px;color:#5c56
 .crumbs a{text-decoration:none}
 @media(max-width:640px){
   header{padding:8px 12px}
-  nav{flex-wrap:nowrap;overflow-x:auto;gap:12px}
-  nav a{flex:0 0 auto}
+  .nav-burger{display:inline-flex;flex-direction:column;justify-content:center;gap:5px;width:44px;height:44px;cursor:pointer}
+  .nav-burger span{display:block;width:20px;height:2px;background:#fff;border-radius:1px}
+  nav{display:none;flex-basis:100%;flex-direction:column;gap:12px;padding:4px 0 8px}
+  .nav-toggle:checked ~ nav{display:flex}
+  nav a{padding:4px 0}
   main{padding:10px 12px}
   h1{font-size:22px}
   .price{font-size:24px}
   .grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
   .card{padding:10px}
-  .card img{height:148px}
   .card .btn{padding:10px 8px;font-size:14px}
-  table,thead,tbody,tr,td{display:block}
-  thead{display:none}
-  td{border:0;padding:4px 10px}
-  tr{border-bottom:1px solid #eee;padding:8px 0}
-  td.thumb,th.thumb{display:block;width:auto;padding:8px 10px 2px}
+  table.stack,table.stack thead,table.stack tbody,table.stack tr,table.stack th,table.stack td{display:block;width:100%}
+  table.stack thead{display:none}
+  table.stack tr{border-bottom:1px solid #eee;padding:8px 0}
+  table.stack th,table.stack td{border:0;text-align:left;padding:2px 10px}
+  table.stack th{color:#6c655d;font-size:13px;padding-top:8px}
+  table.stack td[data-label]:not([data-label=""])::before{content:attr(data-label);display:block;margin-top:6px;font-weight:700;font-size:11px;letter-spacing:.04em;text-transform:uppercase;color:#6c655d}
+  td.thumb,th.thumb{width:auto;padding:8px 10px 2px}
   img.thumb{width:72px;height:72px}
 }
 """
@@ -320,10 +327,10 @@ def page(path, title, desc, body, jsonld=None, index=True, crumbs_html=""):
 <meta property="og:url" content="{e(url)}"><meta name="twitter:card" content="summary">
 <link rel="alternate" type="application/rss+xml" title="{e(NAME)}" href="{e(abs_url('feed.xml').rstrip('/') if False else BASE+PREFIX+'/feed.xml')}">
 <style>{CSS}</style>{ld}</head><body>
-<header><a class="logo" href="{site_href("")}">Luggage<span>Deals</span>Daily</a><nav>{nav}</nav></header>
+<header><a class="logo" href="{site_href("")}">Luggage<span>Deals</span>Daily</a><input class="nav-toggle" id="nav-toggle" type="checkbox"><label class="nav-burger" for="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></label><nav>{nav}</nav></header>
 <main>{crumbs_html}{body}</main>
 <footer>
-<p>We may earn a commission if a merchant approves our affiliate application and you buy through a future affiliate link. Buttons today go to the merchant's own page with no tracking code. <a href="{site_href("disclosure")}">Affiliate disclosure</a>.</p>
+<p>We may earn a commission if you buy through a link on this site. That does not change the price. <a href="{site_href("disclosure")}">Affiliate disclosure</a>.</p>
 <p>Prices and measurements are copied from the maker's public product page on the date shown. We do not publish a price, rating, or measurement we did not read there.</p>
 <p>© {CHECKED[:4]} {e(NAME)} · {e(OWNER)} · <a href="{site_href("about")}">About</a> · <a href="{site_href("privacy")}">Privacy</a> · <a href="{site_href("disclosure")}">Disclosure</a> · <a href="{PREFIX}/llms.txt">llms.txt</a> · <a href="{PREFIX}/sitemap.xml">sitemap</a></p>
 </footer></body></html>"""
@@ -442,7 +449,7 @@ def lead(product):
         pct = pct_off(product)
         badge = f"<span class='badge'>{pct}% under compare-at</span>" if pct else ""
         price_html = f"<p class='lead-price'><span class='price'>{e(shown)}</span>{was_html}{badge}</p>"
-        source = f"Listed price on the {seller} product page · read {when}"
+        source = f"Prices checked {when} on the {seller} product page"
         if was:
             source += ". The crossed-out figure is the compare-at price on that same page."
         if resolved_currency(product) == "EUR":
@@ -528,8 +535,13 @@ def thumb_img(product):
     )
 
 
-def thumb_cell(product):
-    return f"<td class='thumb'>{thumb_img(product)}</td>"
+def thumb_cell(product, label="Photo"):
+    return f"<td class='thumb' data-label='{e(label)}'>{thumb_img(product)}</td>"
+
+
+def listed(product):
+    """A deal we can show: it has the merchant's own product page."""
+    return plain_product_url(product) is not None
 
 
 def photo(product):
@@ -591,21 +603,15 @@ def product_faqs(product):
             f"What does the {name} cost?",
             "We do not have a price copied from a current product page, so this page does not show a number.",
         )
-    program = MERCHANTS[product["merchant"]]
-    if product.get("role") == "affiliate" and not program.get("cj_click_url"):
+    if plain_product_url(product):
         q_link = (
-            "Is the button an affiliate link?",
-            f"Not yet. The {seller} Commission Junction application is still pending, so the button is the merchant's own product URL with no tracking parameter. If the program is approved, the same button can be switched to a CJ deep link in the catalog. The sid format is already pagetype-slug-placement.",
-        )
-    elif product.get("role") == "reference":
-        q_link = (
-            "Is this an affiliate offer?",
-            f"No. {seller} is not an affiliate merchant on this site. The link, when we have one, is the brand's own page and is not a tracking link.",
+            "Where does the button go?",
+            f"It opens the {seller} product page in a new tab.",
         )
     else:
         q_link = (
-            "Is the button an affiliate link?",
-            f"Yes. The button uses the CJ click URL configured for {seller}, with a sid in the form pagetype-slug-placement.",
+            "Where can I buy it?",
+            "This page has no buy button because we do not have a verified product URL.",
         )
     specs = []
     if product.get("overall"):
@@ -626,7 +632,7 @@ def product_faqs(product):
         )
     return [q1, q_spec, q_link, (
         "How current is this page?",
-        f"The price and measurements were read on {when}. They can change. The button opens the merchant page so you can see today's figure.",
+        f"Prices checked {when}. They can change. Open the maker's page to see today's figure.",
     )]
 
 
@@ -672,17 +678,11 @@ def render_product(product):
         (section_href, section_label),
         (None, name),
     ])
-    role_note = ""
-    if product.get("role") == "reference":
-        role_note = "<p class='note'>Comparison page. This brand is not an affiliate merchant here. Any button is a plain link to the brand's own site.</p>"
-    elif product.get("role") == "affiliate":
-        role_note = f"<p class='note'>Affiliate application for {e(merchant_name(product))} is pending. The button is the merchant product page with no tracking code.</p>"
     faqs = product_faqs(product)
     body = (
         f"<h1>{e(name)}</h1>"
         f"<p class='sub'>{e(product['brand'])} · {e(product['category'].replace('-', ' '))}</p>"
         + lead(product)
-        + role_note
         + photo(product)
         + spec_rows(product)
         + faq_html(faqs)
@@ -691,7 +691,7 @@ def render_product(product):
     blocks = [crumb_ld, faq_ld(faqs)]
     if resolved_price(product) is not None and plain_product_url(product):
         blocks.append(product_ld(product))
-    page(path, title, desc, body, blocks, crumbs_html=crumb_html)
+    page(path, title, desc, body, blocks, index=listed(product), crumbs_html=crumb_html)
     if shown:
         FEED.append((name, abs_url(path), desc))
 
@@ -701,10 +701,10 @@ def category_page(slug, title, desc, intro, products):
     crumb_html, crumb_ld = crumbs([(site_href(""), "Deals"), (None, title)])
     faqs = [(
         f"Where do these {title.lower()} prices come from?",
-        "Each price was copied from that merchant's public product page on the date printed on the product page. Models without a verified price are not given a number.",
+        f"Prices checked {checked_label({'checked': CHECKED})}. Each figure was copied from that maker's public product page. Models without a verified price are not given a number.",
     ), (
-        "Do these buttons use affiliate tracking?",
-        "No. Travelpro, LEVEL8, Horizn Studios, and Stuart & Lau applications are pending, so buttons are plain merchant URLs. Away, Monos, Samsonite, Tumi, Briggs & Riley, Béis, and Calpak are comparison links only.",
+        "Where does the button go?",
+        "It opens the maker's own product page.",
     )]
     body = (
         f"<h1>{e(title)}</h1><p class='sub'>{e(intro)}</p>"
@@ -722,9 +722,10 @@ def best_page(slug, title, desc, intro, products, extra=""):
         shown = money(p) or "Check today's price"
         size = p.get("overall") or "—"
         rows.append(
-            f"<tr>{thumb_cell(p)}<td><a href='{site_href('luggage/'+p['id'])}'>{e(display_name(p))}</a>"
+            f"<tr>{thumb_cell(p)}<td data-label='Model'><a href='{site_href('luggage/'+p['id'])}'>{e(display_name(p))}</a>"
             f"<div class='meta'>{e(merchant_name(p))}</div></td>"
-            f"<td>{e(size)}</td><td><b>{e(shown)}</b></td><td>{ext_a(p, 'table', button_label(p), cls='')}</td></tr>"
+            f"<td data-label='Size'>{e(size)}</td><td data-label='Listed'><b>{e(shown)}</b></td>"
+            f"<td>{ext_a(p, 'table', button_label(p), cls='')}</td></tr>"
         )
     priced = [p for p in products if resolved_price(p) is not None]
     faqs = [(
@@ -732,13 +733,13 @@ def best_page(slug, title, desc, intro, products, extra=""):
         "Dollar prices are listed before euro prices. Within one currency the lower listed price is first. This is a price sort of pages we checked, not a lab test.",
     ), (
         "Why are some famous suitcases missing a price?",
-        "Away, Monos, Béis, Calpak, and Briggs & Riley appear only when we could read a price on the brand's own site. Samsonite Freeform and Tumi have no verified price or product URL in this build, so they are named on the alternatives page without a number.",
+        "Away, Monos, Béis, Calpak, and Briggs & Riley appear when a price was on the brand's own site. Samsonite Freeform and Tumi are left off because this site has no verified product page for them.",
     )]
     if priced:
         low = min(priced, key=lambda p: (0 if resolved_currency(p) == "USD" else 1, resolved_price(p)))
         faqs.insert(0, (
             "Which checked price is the lowest on this page?",
-            f"{display_name(low)} at {money(low)} on the {merchant_name(low)} page, read {checked_label(low)}.",
+            f"{display_name(low)} at {money(low)} on the {merchant_name(low)} page. Prices checked {checked_label(low)}.",
         ))
     item_list = {
         "@context": "https://schema.org",
@@ -752,7 +753,7 @@ def best_page(slug, title, desc, intro, products, extra=""):
         item_list["itemListElement"].append({"@type": "ListItem", "position": i, "item": node})
     body = (
         f"<h1>{e(title)}</h1><p>{e(intro)}</p>{extra}"
-        + "<table><thead><tr><th class='thumb'>Photo</th><th>Model</th><th>Listed size</th><th>Listed price</th><th></th></tr></thead><tbody>"
+        + "<table class='stack'><thead><tr><th class='thumb'>Photo</th><th>Model</th><th>Listed size</th><th>Listed price</th><th></th></tr></thead><tbody>"
         + "".join(rows) + "</tbody></table>"
         + "<h2>Pages</h2><div class='grid'>" + "".join(card(p) for p in products) + "</div>"
         + faq_html(faqs)
@@ -783,27 +784,33 @@ def vs_page(slug, title, left_id, right_id, intro):
         ("Volume", "volume"),
         ("Shell", "shell"),
     ):
-        rows += f"<tr><th>{e(label)}</th><td>{e(cell(a, field))}</td><td>{e(cell(b, field))}</td></tr>"
+        rows += (
+            f"<tr><th>{e(label)}</th>"
+            f"<td data-label='{e(display_name(a))}'>{e(cell(a, field))}</td>"
+            f"<td data-label='{e(display_name(b))}'>{e(cell(b, field))}</td></tr>"
+        )
     rows = (
-        f"<tr><th>Photo</th><td class='thumb'>{thumb_img(a)}</td><td class='thumb'>{thumb_img(b)}</td></tr>"
+        f"<tr><th>Photo</th><td class='thumb' data-label='{e(display_name(a))}'>{thumb_img(a)}</td>"
+        f"<td class='thumb' data-label='{e(display_name(b))}'>{thumb_img(b)}</td></tr>"
         + rows
     )
-    rows += f"<tr><th></th><td>{ext_a(a, 'table', button_label(a))}</td><td>{ext_a(b, 'table', button_label(b))}</td></tr>"
+    rows += (
+        f"<tr><th></th><td data-label='{e(display_name(a))}'>{ext_a(a, 'table', button_label(a))}</td>"
+        f"<td data-label='{e(display_name(b))}'>{ext_a(b, 'table', button_label(b))}</td></tr>"
+    )
     faqs = [(
         f"Which listed price is lower, {display_name(a)} or {display_name(b)}?",
         price_compare_sentence(a, b),
     ), (
-        "Are both links affiliate links?",
-        f"{merchant_name(a)} is a pending affiliate merchant, so its button is still a plain product URL. {merchant_name(b)} is comparison content with a plain link to the brand site."
-        if a.get("role") == "affiliate" and b.get("role") == "reference"
-        else "Each button follows that brand's role in the catalog. Pending affiliate merchants still use a plain product URL.",
+        "Where do the buttons go?",
+        "Each button opens that brand's own product page.",
     ), (
         "Did you test these bags?",
         "No. The table repeats the price and the measurements printed on each product page. It is not a wear test.",
     )]
     body = (
         f"<h1>{e(title)}</h1><p>{e(intro)}</p>"
-        + "<div class='box'><table><thead><tr><th></th><th>"
+        + "<div class='box'><table class='stack'><thead><tr><th></th><th>"
         + f"<a href='{site_href('luggage/'+a['id'])}'>{e(display_name(a))}</a></th><th>"
         + f"<a href='{site_href('luggage/'+b['id'])}'>{e(display_name(b))}</a></th></tr></thead><tbody>{rows}</tbody></table></div>"
         + faq_html(faqs)
@@ -831,7 +838,7 @@ def price_compare_sentence(a, b):
     if pa == pb:
         return f"Both pages listed {money(a)} on {checked_label(a)}."
     low, high = (a, b) if pa < pb else (b, a)
-    return f"{display_name(low)} is the lower listed price at {money(low)}. {display_name(high)} is listed at {money(high)}. Both figures were read on {checked_label(a)}."
+    return f"{display_name(low)} is the lower listed price at {money(low)}. {display_name(high)} is listed at {money(high)}. Prices checked {checked_label(a)}."
 
 
 def gift_page(slug, title, desc, intro, ids):
@@ -840,10 +847,10 @@ def gift_page(slug, title, desc, intro, ids):
     crumb_html, crumb_ld = crumbs([(site_href(""), "Deals"), (site_href("gifts"), "Gifts"), (None, title)])
     faqs = [(
         "Are these ranked as the best gifts?",
-        "No. They are merchant products with a price we could read, grouped for this occasion. The order is the catalog order on this page, and each card shows that product's own listed price.",
+        "No. They are products with a price copied from the maker, grouped for this occasion. Each card shows that product's own listed price.",
     ), (
         "Can I buy them from this site?",
-        "The buttons leave this site and open the merchant's own product page. Affiliate tracking is not turned on while the CJ applications are pending.",
+        "The button opens the maker's own product page.",
     )]
     body = (
         f"<h1>{e(title)}</h1><p>{e(intro)}</p>"
@@ -907,23 +914,19 @@ def static_pages():
     use_sid("about", "")
     about_body = (
         f"<h1>About {e(NAME)}</h1>"
-        f"<p>{e(NAME)} is a static luggage and travel-accessory deal site owned by {e(OWNER)}. "
-        "Each product page is built for someone who already knows the model name and wants the listed price and a way to open the maker's page.</p>"
-        "<p>The merchants with Commission Junction applications pending are Travelpro (US, advertiser 5227635, 5%), "
-        "LEVEL8 (advertiser 6087891, 10%), Horizn Studios (advertiser 5354360, 6%), and Stuart &amp; Lau (advertiser 7777913). "
-        "Stuart &amp; Lau's application does not have a commission rate recorded in our catalog, so we do not print one.</p>"
-        "<p>Away, Monos, Samsonite, Tumi, Briggs &amp; Riley, Béis, and Calpak are covered as comparison names. They are not affiliate merchants here.</p>"
-        "<p>Prices and measurements stay in one catalog file, <code>data/catalog.json</code>, keyed by product. "
-        "A later CJ product feed can fill <code>feed.price</code> without inventing a number in the templates.</p>"
+        f"<p>{e(NAME)} is a luggage and travel-accessory deal site run by {e(OWNER)}. "
+        "Each deal shows a price and the measurements copied from the maker's own product page.</p>"
+        "<p>A price appears only when it was on that page. If it was not, the deal says to check today's price and does not guess a number.</p>"
+        f"<p>Buttons leave this site and open the maker's page. Some of those links may earn us a commission, at no extra cost to you. "
+        f"<a href='{site_href('disclosure')}'>Affiliate disclosure</a>.</p>"
     )
-    page("about", f"About {NAME}", f"{NAME} is owned by {OWNER}. Prices are copied from merchant product pages while the CJ applications are pending.", about_body, crumbs_html=crumbs([(site_href(""), "Deals"), (None, "About")])[0])
+    page("about", f"About {NAME}", f"{NAME} is owned by {OWNER}. Prices are copied from each maker's product page, and we do not guess a number.", about_body, crumbs_html=crumbs([(site_href(""), "Deals"), (None, "About")])[0])
 
     use_sid("privacy", "")
     privacy = (
         "<h1>Privacy</h1>"
         f"<p>{e(NAME)} is a static site. It does not ask you to create an account, and this version does not set analytics cookies or embed a tracker.</p>"
-        "<p>Product buttons open another site. That site has its own privacy policy. While affiliate tracking is off, those URLs do not include our shopper id. "
-        "If a CJ deep link is turned on later, the click URL can include a sid that names the page and the button, such as deal-slug-cta.</p>"
+        "<p>Product buttons open another site. That site has its own privacy policy.</p>"
         "<p>Email the site owner through the contact published with the domain registration if you need a page changed. This page does not collect that message itself.</p>"
     )
     page("privacy", f"Privacy · {NAME}", f"{NAME} is a static site with no accounts and no analytics cookies. Buttons open merchant pages with no tracking parameter.", privacy, crumbs_html=crumbs([(site_href(""), "Deals"), (None, "Privacy")])[0])
@@ -931,36 +934,23 @@ def static_pages():
     use_sid("disclosure", "")
     disclosure = (
         "<h1>Affiliate disclosure</h1>"
-        f"<p>{e(NAME)} intends to use affiliate links. Applications are pending for Travelpro US (CJ advertiser 5227635, stated rate 5%), "
-        "LEVEL8 (CJ 6087891, stated rate 10%), Horizn Studios (CJ 5354360, stated rate 6%), and Stuart &amp; Lau (CJ 7777913, rate not recorded here).</p>"
-        "<p>Until a program is approved, every product button is the merchant's own https product page. The catalog field <code>cj_click_url</code> is empty. "
-        "The site is ready to add a sid in the form pagetype-slug-placement when that field is a CJ click URL. The build does not request tracking hosts.</p>"
-        "<p>If you buy through an affiliate link after one is enabled, we may earn a commission. That does not add a fee on the merchant's price. "
-        "Comparison brands (Away, Monos, Samsonite, Tumi, Briggs &amp; Riley, Béis, Calpak) are not affiliate links.</p>"
-        "<p>We do not list Amazon, eBay, Walmart, Nordstrom Rack, or Sephora.</p>"
-        f"<p>Owned by {e(OWNER)}.</p>"
+        f"<p>{e(NAME)} is owned by {e(OWNER)}. Some links on this site may be affiliate links. "
+        "If you buy through one, we may earn a commission. That does not add anything to the price you pay.</p>"
+        "<p>A button opens the maker's own product page. The price on that page is the one that matters.</p>"
     )
-    page("disclosure", f"Affiliate disclosure · {NAME}", "CJ applications for Travelpro, LEVEL8, Horizn Studios, and Stuart & Lau are pending. Buttons open the merchant page with no tracking code.", disclosure, crumbs_html=crumbs([(site_href(""), "Deals"), (None, "Disclosure")])[0])
+    page("disclosure", f"Affiliate disclosure · {NAME}", f"{NAME} may earn a commission if you buy through a link. That does not change the price on the maker's page.", disclosure, crumbs_html=crumbs([(site_href(""), "Deals"), (None, "Disclosure")])[0])
 
 
 def home():
     use_sid("home", "")
-    carry = [p for p in PRODUCTS if p["category"] == "carry-on" and p["role"] == "affiliate" and resolved_currency(p) == "USD" and resolved_price(p)]
+    checked = checked_label({"checked": CHECKED})
+    carry = [p for p in PRODUCTS if p["category"] == "carry-on" and p["role"] == "affiliate" and resolved_currency(p) == "USD" and resolved_price(p) and listed(p)]
     carry.sort(key=lambda p: resolved_price(p))
-    fold = carry[:3]
-    fold_html = "".join(
-        "<div class='lead-offer' style='position:static'>"
-        f"<p class='meta'>{e(merchant_name(p))} · read {e(checked_label(p))}</p>"
-        f"<p class='lead-name'><a href='{site_href('luggage/'+p['id'])}'>{e(display_name(p))}</a></p>"
-        f"<p class='lead-price'><span class='price'>{e(money(p))}</span></p>"
-        f"{ext_a(p, 'cta', button_label(p))}</div>"
-        for p in fold
-    )
     groups = [
         ("Carry-ons with a dollar price", [p for p in carry]),
-        ("Checked luggage with a dollar price", [p for p in PRODUCTS if p["category"] == "checked" and resolved_currency(p) == "USD" and resolved_price(p) and p["role"] == "affiliate"]),
-        ("Horizn Studios, listed in euros", [p for p in PRODUCTS if p["merchant"] == "horizn"]),
-        ("Underseat, backpacks, and packing cubes", [p for p in PRODUCTS if p["category"] in ("underseat", "backpack", "packing-cube", "weekender", "duffel") and p["role"] == "affiliate"]),
+        ("Checked luggage with a dollar price", [p for p in PRODUCTS if p["category"] == "checked" and resolved_currency(p) == "USD" and resolved_price(p) and p["role"] == "affiliate" and listed(p)]),
+        ("Horizn Studios, listed in euros", [p for p in PRODUCTS if p["merchant"] == "horizn" and listed(p)]),
+        ("Underseat, backpacks, and packing cubes", [p for p in PRODUCTS if p["category"] in ("underseat", "backpack", "packing-cube", "weekender", "duffel") and p["role"] == "affiliate" and listed(p)]),
     ]
     sections = ""
     for heading, rows in groups:
@@ -968,21 +958,18 @@ def home():
         sections += f"<h2>{e(heading)}</h2><div class='grid'>" + "".join(card(p) for p in rows) + "</div>"
     faqs = [(
         "Where do the prices come from?",
-        f"From each merchant's public product page, read on {checked_label({'checked': CHECKED})}. A model without that reading shows Check today's price instead of a number.",
+        f"Prices checked {checked}. Each figure was copied from the maker's public product page. A model without that reading shows Check today's price instead of a number.",
     ), (
-        "Are the buttons affiliate links today?",
-        "No. The CJ applications are pending, and cj_click_url is empty, so each button is the plain product URL.",
+        "Where does the button go?",
+        "It opens the maker's own product page.",
     )]
     crumb_html = ""
     body = (
         "<h1>Luggage deals</h1>"
-        "<p class='sub'>Carry-ons, checked bags, and travel accessories from Travelpro, LEVEL8, Horizn Studios, and Stuart &amp; Lau. "
-        "Famous names such as Away and Monos are comparison pages, not affiliate offers.</p>"
+        f"<p class='sub'>Carry-ons, checked bags, and travel accessories from Travelpro, LEVEL8, Horizn Studios, Stuart &amp; Lau, and other makers. Prices checked {e(checked)}.</p>"
         f"<div class='bf-banner'><p style='margin:0 0 6px'><b>Black Friday 2026 is Friday, November 27.</b> Cyber Monday is November 30.</p>"
         f"<p style='margin:0'>The largest gaps versus each product's own compare-at are on one page. Horizn prices stay in euros.</p>"
         f"<a class='btn' href='{site_href('black-friday-luggage-deals')}'>Black Friday luggage deals</a></div>"
-        "<h2>Lowest checked carry-on prices</h2>"
-        "<div class='grid' style='grid-template-columns:repeat(auto-fit,minmax(240px,1fr))'>" + fold_html + "</div>"
         + sections
         + "<p class='chips'>"
         + "".join(f"<a href='{site_href(path)}'>{e(label)}</a>" for path, label in (
@@ -1055,19 +1042,19 @@ def black_friday_page():
         rank_rows.append(
             "<tr>"
             f"{thumb_cell(p)}"
-            f"<td><a href='{site_href('luggage/'+p['id'])}'>{e(display_name(p))}</a>"
+            f"<td data-label='Model'><a href='{site_href('luggage/'+p['id'])}'>{e(display_name(p))}</a>"
             f"<div class='meta'>{e(merchant_name(p))}</div></td>"
-            f"<td><b>{e(money(p))}</b></td>"
-            f"<td>{e(compare_text(p))}</td>"
-            f"<td>{e(money_amount(gap, resolved_currency(p)))}</td>"
+            f"<td data-label='Listed'><b>{e(money(p))}</b></td>"
+            f"<td data-label='Compare-at'>{e(compare_text(p))}</td>"
+            f"<td data-label='Savings'>{e(money_amount(gap, resolved_currency(p)))}</td>"
             f"<td>{ext_a(p, 'table', button_label(p), cls='')}</td>"
             "</tr>"
         )
     groups = [
-        ("Carry-on", [p for p in PRODUCTS if p["category"] == "carry-on"]),
-        ("Checked", [p for p in PRODUCTS if p["category"] == "checked"]),
+        ("Carry-on", [p for p in PRODUCTS if p["category"] == "carry-on" and listed(p)]),
+        ("Checked", [p for p in PRODUCTS if p["category"] == "checked" and listed(p)]),
         ("Sets", []),
-        ("Bags", [p for p in PRODUCTS if p["category"] in ("underseat", "backpack", "weekender", "duffel", "packing-cube")]),
+        ("Bags", [p for p in PRODUCTS if p["category"] in ("underseat", "backpack", "weekender", "duffel", "packing-cube") and listed(p)]),
     ]
     sections = ""
     linked = 0
@@ -1082,7 +1069,7 @@ def black_friday_page():
         if heading == "Sets" and not rows:
             sections += (
                 "<h2>Sets</h2>"
-                "<p>The catalog has no luggage set with a checked price, so this section does not list one. "
+                "<p>This site has no luggage set with a checked price, so this section does not list one. "
                 "Packing-cube sets are with bags.</p>"
             )
             continue
@@ -1123,15 +1110,15 @@ def black_friday_page():
         ),
         (
             "Where are the luggage sets?",
-            "No luggage set in the catalog has a checked price. Packing-cube sets are listed under bags.",
+            "This site has no luggage set with a checked price. Packing-cube sets are listed under bags.",
         ),
     ]
     body = (
         "<h1>Black Friday luggage deals 2026</h1>"
         "<p>Black Friday 2026 is Friday, November 27. Cyber Monday is Monday, November 30. "
-        f"The table keeps every model whose catalog row already has both a listed price and a higher compare-at, checked {e(checked_label({'checked': CHECKED}))}. "
+        f"The table keeps every model that already has both a listed price and a higher compare-at. Prices checked {e(checked_label({'checked': CHECKED}))}. "
         "Dollar gaps are listed before euro gaps. Nothing here is a predicted holiday percent off.</p>"
-        "<table><thead><tr><th class='thumb'>Photo</th><th>Model</th><th>Listed price</th><th>Compare-at</th><th>Gap</th><th></th></tr></thead><tbody>"
+        "<table class='stack'><thead><tr><th class='thumb'>Photo</th><th>Model</th><th>Listed price</th><th>Compare-at</th><th>Gap</th><th></th></tr></thead><tbody>"
         + "".join(rank_rows) + "</tbody></table>"
         + "<h2>Deal cards</h2>"
         + "<p class='sub'>The same models as the table. Each photo is the image from that merchant's product page.</p>"
@@ -1268,11 +1255,8 @@ def hubs():
         "away-alternatives",
         "Away alternatives",
         "Away The Carry-On in Jet Black was $275. This page lines it up with priced Travelpro and LEVEL8 carry-ons, plus Monos, Béis, Calpak, and Briggs & Riley.",
-        "Away The Carry-On in Jet Black was listed at $275, and The Bigger Carry-On in Jet Black at $295, on Away's own pages. Samsonite Freeform and Tumi are not linked here because this build did not get a verified product URL. The Travelpro and LEVEL8 rows are the bags our pending affiliate merchants sell.",
+        "Away The Carry-On in Jet Black was listed at $275, and The Bigger Carry-On in Jet Black at $295, on Away's own pages. Samsonite Freeform and Tumi are not listed because we do not have a verified product page or price for them.",
         [BY_ID[i] for i in alt_ids],
-        extra="<p>Samsonite Freeform and Tumi are common search names. We do not have a verified current price or a product URL we could open, so they are not given a button. <a href='"
-        + site_href("luggage/samsonite-freeform") + "'>Samsonite Freeform page</a> · <a href='"
-        + site_href("luggage/tumi-carry-on") + "'>Tumi page</a>.</p>",
     )
 
     use_sid("best", "index")
@@ -1355,21 +1339,16 @@ def brand_pages():
     for key, rows in groups.items():
         merchant = MERCHANTS[key]
         use_sid("brand", key)
+        rows = [p for p in rows if listed(p)]
         rows = sorted(rows, key=lambda p: (p["category"], resolved_price(p) or 10**9))
-        status = merchant.get("status")
-        if status == "pending":
-            note = "CJ application pending. Buttons are plain product URLs."
-        elif status == "none":
-            note = "Not an affiliate merchant. Links, when present, go to the brand's own site."
-        else:
-            note = ""
         crumb_html, crumb_ld = crumbs([(site_href(""), "Deals"), (site_href("brands"), "Brands"), (None, merchant["name"])])
-        body = f"<h1>{e(merchant['name'])}</h1><p class='note'>{e(note)}</p><div class='grid'>" + "".join(card(p) for p in rows if p.get("url") or resolved_price(p) is None) + "</div>"
-        # cards for url-less still render without a button
-        body = f"<h1>{e(merchant['name'])}</h1><p>{e(note)}</p><div class='grid'>" + "".join(card(p) for p in rows) + "</div>"
-        desc = f"{merchant['name']} models on {NAME}. " + note
-        if len(desc) < 50:
-            desc = desc + " Prices appear only when copied from the product page."
+        if rows:
+            note = f"Prices checked {checked_label({'checked': CHECKED})}."
+            body = f"<h1>{e(merchant['name'])}</h1><p>{e(note)}</p><div class='grid'>" + "".join(card(p) for p in rows) + "</div>"
+            desc = f"{merchant['name']} luggage on {NAME}. Prices checked {checked_label({'checked': CHECKED})}, copied from the maker's product page."
+        else:
+            body = f"<h1>{e(merchant['name'])}</h1><p>We do not have a verified product page or a listed price for {e(merchant['name'])} yet.</p>"
+            desc = f"{merchant['name']} on {NAME}. We do not have a verified product page or a listed price for this brand yet."
         page(f"brands/{key}", f"{merchant['name']} luggage", desc[:170], body, [crumb_ld], crumbs_html=crumb_html)
         chips.append((key, merchant["name"]))
     use_sid("brand", "index")
@@ -1385,7 +1364,7 @@ def category_indexes():
         "underseat": ("Underseat bags", "Underseat totes and rolling underseat bags with a listed price from Travelpro."),
     }
     for slug, (title, intro) in labels.items():
-        rows = [p for p in PRODUCTS if p["category"] == slug and (p.get("url") or resolved_price(p) is not None)]
+        rows = [p for p in PRODUCTS if p["category"] == slug and listed(p)]
         rows = sort_price(rows)
         category_page(slug, title, intro, intro, rows)
     accessories = [p for p in PRODUCTS if p["category"] in ("packing-cube", "backpack", "weekender", "duffel")]
@@ -1572,6 +1551,45 @@ def audit():
     home_html = open(os.path.join(OUT, "index.html"), encoding="utf-8").read()
     if site_href("black-friday-luggage-deals") not in home_html or "nav-bf" not in home_html:
         raise SystemExit("home or nav is missing the Black Friday link")
+    if "Lowest checked carry-on" in home_html:
+        raise SystemExit("home still duplicates the carry-on grid")
+    if "Prices checked" not in home_html:
+        raise SystemExit("home is missing the prices-checked date")
+    if "nav-burger" not in home_html or "system-ui" not in home_html:
+        raise SystemExit("home is missing the menu or the sans font stack")
+    about_html = open(os.path.join(OUT, "about", "index.html"), encoding="utf-8").read()
+    for needle in ("catalog.json", "feed.price", "5227635", "advertiser", "commission rate"):
+        if needle.lower() in about_html.lower():
+            raise SystemExit(f"about page still mentions {needle}")
+    banned_copy = ("Affiliate application for", "not an affiliate merchant", "Comparison page.")
+    for dirpath, _, files in os.walk(OUT):
+        for fn in files:
+            if not fn.endswith(".html"):
+                continue
+            text = open(os.path.join(dirpath, fn), encoding="utf-8").read()
+            for phrase in banned_copy:
+                if phrase in text:
+                    raise SystemExit(f"{os.path.relpath(os.path.join(dirpath, fn), OUT)} still says {phrase}")
+    for slug in ("samsonite-freeform", "tumi-carry-on"):
+        dead = open(os.path.join(OUT, "luggage", slug, "index.html"), encoding="utf-8").read()
+        if 'name="robots" content="noindex"' not in dead:
+            raise SystemExit(f"{slug} is missing noindex")
+        if f"/luggage/{slug}/" in sitemap:
+            raise SystemExit(f"{slug} is still in the sitemap")
+        for dirpath, _, files in os.walk(OUT):
+            for fn in files:
+                if not fn.endswith(".html"):
+                    continue
+                rel = os.path.relpath(os.path.join(dirpath, fn), OUT)
+                if rel == os.path.join("luggage", slug, "index.html"):
+                    continue
+                text = open(os.path.join(dirpath, fn), encoding="utf-8").read()
+                if f"/luggage/{slug}/" in text and "<article class='card'>" in text and f"luggage/{slug}" in text.split("<article class='card'>", 1)[-1]:
+                    pass
+                if f"href='{site_href('luggage/'+slug)}'" in text or f'href="{site_href("luggage/"+slug)}"' in text:
+                    raise SystemExit(f"{rel} still links to {slug}")
+    if "data-label='Listed'" not in bf or "data-label='Compare-at'" not in bf or "data-label='Savings'" not in bf:
+        raise SystemExit("black friday table is missing price labels")
     print(f"built {deal_pages} luggage pages, {len(PAGES)} indexable URLs, origin {BASE}{PREFIX}/")
 
 
