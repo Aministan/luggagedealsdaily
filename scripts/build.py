@@ -228,11 +228,13 @@ h2{font-size:22px;line-height:1.25}
 .btn{display:inline-block;text-align:center;background:#14324a;color:#fff;border-radius:10px;padding:12px 16px;text-decoration:none;font-weight:700}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px}
 .card{background:#fff;border:1px solid #e4ddd2;border-radius:14px;padding:12px;display:flex;flex-direction:column;min-width:0}
-.card img{display:block;width:100%;max-width:100%;height:190px;object-fit:contain;object-position:center;background:#f3efe8;border-radius:10px;margin-top:10px}
+.card img{display:block;width:100%;max-width:100%;height:190px;object-fit:contain;object-position:center;background:#f3efe8;border-radius:10px;margin:0 0 10px}
 .brand{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:#7a7480}
 .nm{font-weight:650;margin:2px 0 6px}
 .nm a{color:inherit;text-decoration:none}
-.card .btn{margin-top:8px}
+.card .btn{margin-top:auto}
+img.thumb{display:block;width:72px;height:72px;object-fit:contain;object-position:center;background:#f3efe8;border-radius:8px}
+td.thumb,th.thumb{width:88px;padding:8px;vertical-align:middle}
 .box{background:#fff;border:1px solid #e4ddd2;border-radius:14px;padding:16px;margin:18px 0}
 .hero-photo{background:#fff;border:1px solid #e4ddd2;border-radius:14px;padding:12px;margin:0 0 16px}
 .hero-photo img{display:block;width:100%;max-width:420px;height:auto;object-fit:contain;background:#f3efe8;border-radius:10px}
@@ -262,6 +264,8 @@ footer{max-width:1100px;margin:20px auto;padding:16px;font-size:13px;color:#5c56
   thead{display:none}
   td{border:0;padding:4px 10px}
   tr{border-bottom:1px solid #eee;padding:8px 0}
+  td.thumb,th.thumb{display:block;width:auto;padding:8px 10px 2px}
+  img.thumb{width:72px;height:72px}
 }
 """
 
@@ -512,6 +516,22 @@ def product_img(product, eager=False):
     )
 
 
+def thumb_img(product):
+    """Small copy of the hosted product photo for a table cell."""
+    hosted = hosted_image(product)
+    if not hosted:
+        return ""
+    src, _, _ = hosted
+    return (
+        f"<img class='thumb' loading='lazy' decoding='async' src='{e(src)}' alt='{e(display_name(product))}' "
+        f"width='72' height='72'>"
+    )
+
+
+def thumb_cell(product):
+    return f"<td class='thumb'>{thumb_img(product)}</td>"
+
+
 def photo(product):
     img = product_img(product, eager=True)
     if not img:
@@ -530,11 +550,11 @@ def card(product, placement="grid"):
     img = product_img(product)
     internal = site_href(f"luggage/{product['id']}")
     return (
-        f"<article class='card'><div class='brand'>{e(product['brand'])}</div>"
+        f"<article class='card'>{img}"
+        f"<div class='brand'>{e(product['brand'])}</div>"
         f"<div class='nm'><a href='{internal}'>{e(display_name(product))}</a></div>"
         f"{price}{was_html}"
-        f"{ext_a(product, placement, button_label(product))}"
-        f"{img}</article>"
+        f"{ext_a(product, placement, button_label(product))}</article>"
     )
 
 
@@ -702,7 +722,7 @@ def best_page(slug, title, desc, intro, products, extra=""):
         shown = money(p) or "Check today's price"
         size = p.get("overall") or "—"
         rows.append(
-            f"<tr><td><a href='{site_href('luggage/'+p['id'])}'>{e(display_name(p))}</a>"
+            f"<tr>{thumb_cell(p)}<td><a href='{site_href('luggage/'+p['id'])}'>{e(display_name(p))}</a>"
             f"<div class='meta'>{e(merchant_name(p))}</div></td>"
             f"<td>{e(size)}</td><td><b>{e(shown)}</b></td><td>{ext_a(p, 'table', button_label(p), cls='')}</td></tr>"
         )
@@ -732,7 +752,7 @@ def best_page(slug, title, desc, intro, products, extra=""):
         item_list["itemListElement"].append({"@type": "ListItem", "position": i, "item": node})
     body = (
         f"<h1>{e(title)}</h1><p>{e(intro)}</p>{extra}"
-        + "<table><thead><tr><th>Model</th><th>Listed size</th><th>Listed price</th><th></th></tr></thead><tbody>"
+        + "<table><thead><tr><th class='thumb'>Photo</th><th>Model</th><th>Listed size</th><th>Listed price</th><th></th></tr></thead><tbody>"
         + "".join(rows) + "</tbody></table>"
         + "<h2>Pages</h2><div class='grid'>" + "".join(card(p) for p in products) + "</div>"
         + faq_html(faqs)
@@ -764,6 +784,10 @@ def vs_page(slug, title, left_id, right_id, intro):
         ("Shell", "shell"),
     ):
         rows += f"<tr><th>{e(label)}</th><td>{e(cell(a, field))}</td><td>{e(cell(b, field))}</td></tr>"
+    rows = (
+        f"<tr><th>Photo</th><td class='thumb'>{thumb_img(a)}</td><td class='thumb'>{thumb_img(b)}</td></tr>"
+        + rows
+    )
     rows += f"<tr><th></th><td>{ext_a(a, 'table', button_label(a))}</td><td>{ext_a(b, 'table', button_label(b))}</td></tr>"
     faqs = [(
         f"Which listed price is lower, {display_name(a)} or {display_name(b)}?",
@@ -951,7 +975,7 @@ def home():
     )]
     crumb_html = ""
     body = (
-        "<h1>Luggage deals with the price above the photo</h1>"
+        "<h1>Luggage deals</h1>"
         "<p class='sub'>Carry-ons, checked bags, and travel accessories from Travelpro, LEVEL8, Horizn Studios, and Stuart &amp; Lau. "
         "Famous names such as Away and Monos are comparison pages, not affiliate offers.</p>"
         f"<div class='bf-banner'><p style='margin:0 0 6px'><b>Black Friday 2026 is Friday, November 27.</b> Cyber Monday is November 30.</p>"
@@ -976,7 +1000,7 @@ def home():
         + "</p>"
         + faq_html(faqs)
     )
-    desc = f"Luggage prices from Travelpro, LEVEL8, Horizn Studios, and Stuart & Lau, checked {checked_label({'checked': CHECKED})}. The price and buy button sit above the photo."
+    desc = f"Luggage prices from Travelpro, LEVEL8, Horizn Studios, and Stuart & Lau, checked {checked_label({'checked': CHECKED})}. Each deal card opens with the product photo."
     page("index.html", f"{NAME}: checked luggage prices", desc, body, [faq_ld(faqs)], crumbs_html=crumb_html)
 
 
@@ -1030,6 +1054,7 @@ def black_friday_page():
         gap = savings_amount(p)
         rank_rows.append(
             "<tr>"
+            f"{thumb_cell(p)}"
             f"<td><a href='{site_href('luggage/'+p['id'])}'>{e(display_name(p))}</a>"
             f"<div class='meta'>{e(merchant_name(p))}</div></td>"
             f"<td><b>{e(money(p))}</b></td>"
@@ -1106,7 +1131,7 @@ def black_friday_page():
         "<p>Black Friday 2026 is Friday, November 27. Cyber Monday is Monday, November 30. "
         f"The table keeps every model whose catalog row already has both a listed price and a higher compare-at, checked {e(checked_label({'checked': CHECKED}))}. "
         "Dollar gaps are listed before euro gaps. Nothing here is a predicted holiday percent off.</p>"
-        "<table><thead><tr><th>Model</th><th>Listed price</th><th>Compare-at</th><th>Gap</th><th></th></tr></thead><tbody>"
+        "<table><thead><tr><th class='thumb'>Photo</th><th>Model</th><th>Listed price</th><th>Compare-at</th><th>Gap</th><th></th></tr></thead><tbody>"
         + "".join(rank_rows) + "</tbody></table>"
         + "<h2>Deal cards</h2>"
         + "<p class='sub'>The same models as the table. Each photo is the image from that merchant's product page.</p>"
@@ -1508,11 +1533,30 @@ def audit():
     for chunk in cards:
         imgs = re.findall(r"<img\b[^>]*>", chunk)
         if not imgs:
+            if chunk.startswith("<img"):
+                raise SystemExit("black friday card photo is not the first element")
             continue
         pictured += 1
+        if not chunk.startswith("<img "):
+            raise SystemExit("black friday card does not start with the photo")
         tag = imgs[0]
         if "loading='lazy'" not in tag or " width='" not in tag or " height='" not in tag or " alt='" not in tag:
             raise SystemExit(f"black friday card image is missing alt, size, or lazy: {tag}")
+    tbody = bf.find("<tbody>")
+    first_row_end = bf.find("</tr>", tbody)
+    first_img = bf.find("<img")
+    if tbody < 0 or first_img < 0 or not (tbody < first_img < first_row_end):
+        raise SystemExit("black friday first image is not inside the first table row")
+    for html_path in (
+        os.path.join(dirpath, fn)
+        for dirpath, _, files in os.walk(OUT)
+        for fn in files
+        if fn.endswith(".html")
+    ):
+        page_html = open(html_path, encoding="utf-8").read()
+        for chunk in re.findall(r"<article class='card'>(.*?)</article>", page_html):
+            if "<img" in chunk and not chunk.startswith("<img "):
+                raise SystemExit(f"card photo is not first in {os.path.relpath(html_path, OUT)}")
     expected = sum(1 for product in ranked if hosted_image(product))
     if pictured != expected:
         raise SystemExit(f"black friday photos {pictured} != hosted images {expected}")
