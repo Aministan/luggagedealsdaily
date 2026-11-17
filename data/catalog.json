@@ -125,7 +125,7 @@
       "category": "carry-on",
       "shell": "softside",
       "url": "https://travelpro.com/products/platinum®-elite-21-expandable-carry-on-spinner",
-      "image": "https://cdn.shopify.com/s/files/1/0080/0984/2786/files/409186122_aa667a37-a74f-42a0-82cb-10fe11159f35.jpg?v=1775252544",
+      "image": "/media/products/travelpro-platinum-elite-carry-on-spinner.jpg",
       "price": 390.0,
       "currency": "USD",
       "overall": "23.5 x 14.5 x 9 in",
@@ -144,7 +144,9 @@
         "price": null,
         "currency": null,
         "url": null
-      }
+      },
+      "image_width": 600,
+      "image_height": 600
     },
     {
       "id": "travelpro-platinum-elite-carry-on-rollaboard",
@@ -157,7 +159,7 @@
       "category": "carry-on",
       "shell": "softside",
       "url": "https://travelpro.com/products/platinum®-elite-22-expandable-carry-on-rollaboard®",
-      "image": "https://cdn.shopify.com/s/files/1/0080/0984/2786/files/409182201_12.jpg?v=1775589925",
+      "image": "/media/products/travelpro-platinum-elite-carry-on-rollaboard.jpg",
       "price": 390.0,
       "currency": "USD",
       "overall": "23 x 14.5 x 9 in",
@@ -176,7 +178,9 @@
         "price": null,
         "currency": null,
         "url": null
-      }
+      },
+      "image_width": 600,
+      "image_height": 600
     },
     {
       "id": "travelpro-platinum-elite-international-carry-on-spinner",
@@ -189,7 +193,7 @@
       "category": "carry-on",
       "shell": "softside",
       "url": "https://travelpro.com/products/platinum®-elite-international-expandable-carry-on-spinner",
-      "image": "https://cdn.shopify.com/s/files/1/0080/0984/2786/files/travelpro-platinum-elite-international-carry-on-spinner-shadow-black-hero-front-409186701-1.jpg?v=1777045511",
+      "image": "/media/products/travelpro-platinum-elite-international-carry-on-spinner.jpg",
       "price": 390.0,
       "currency": "USD",
       "overall": "21.75 x 15.75 x 7.75 in",
@@ -208,7 +212,9 @@
         "price": null,
         "currency": null,
         "url": null
-      }
+      },
+      "image_width": 600,
+      "image_height": 600
     },
     {
       "id": "travelpro-platinum-elite-carry-on-hardside-spinner",
@@ -221,7 +227,7 @@
       "category": "carry-on",
       "shell": "hardside",
       "url": "https://travelpro.com/products/platinum-elite-hardside-carry-on-expandable-luggage-hardside-spinner-suitcase",
-      "image": "https://cdn.shopify.com/s/files/1/0080/0984/2786/files/travelpro-platinum-elite-hardside-carry-on-spinner-aviator-navy-front-view-409269122-1.jpg?v=1776714954",
+      "image": "/media/products/travelpro-platinum-elite-carry-on-hardside-spinner.jpg",
       "price": 365.0,
       "currency": "USD",
       "overall": "23 x 14.5 x 9.5 in",
@@ -240,7 +246,9 @@
         "price": null,
         "currency": null,
         "url": null
-      }
+      },
+      "image_width": 600,
+      "image_height": 600
     },
     {
       "id": "travelpro-platinum-elite-compact-hardside-spinner",
@@ -253,7 +261,7 @@
       "category": "carry-on",
       "shell": "hardside",
       "url": "https://travelpro.com/products/platinum-elite-hardside-compact-carry-on-expandable-luggage-spinner-suitcase",
-      "image": "https://cdn.shopify.com/s/files/1/0080/0984/2786/files/travelpro-platinum-elite-compact-hardside-carry-on-spinner-aviator-navy-front-409269022-1.jpg?v=1776866759",
+      "image": "/media/products/travelpro-platinum-elite-compact-hardside-spinner.jpg",
       "price": 365.0,
       "currency": "USD",
       "overall": "22 x 14 x 9 in",
@@ -272,7 +280,9 @@
         "price": null,
         "currency": null,
         "url": null
-      }
+      },
+      "image_width": 600,
+      "image_height": 600
     },
     {
       "id": "travelpro-platinum-elite-business-plus-spinner",
@@ -285,7 +295,7 @@
       "category": "carry-on",
       "shell": "softside",
       "url": "https://travelpro.com/products/platinum®-elite-20-expandable-business-plus-carry-on-spinner",
-      "image": "https://cdn.shopify.com/s/files/1/0080/0984/2786/files/409188001_13.jpg?v=1775757450",
+      "image": "/media/products/travelpro-platinum-elite-business-plus-spinner.jpg",
       "price": 400.0,
       "currency": "USD",
       "overall": "22.5 x 14.5 x 9 in",
@@ -304,7 +314,9 @@
         "price": null,
         "currency": null,
         "url": null
-      }
+      },
+      "image_width": 600,
+      "image_height": 600
     },
     {
       "id": "travelpro-platinum-elite-medium-check-in-spinner",
@@ -317,7 +329,7 @@
       "category": "checked",
       "shell": "softside",
       "url": "https://travelpro.com/products/platinum®-elite-25-expandable-spinner",
-      "image": "https://cdn.shopify.com/s/files/1/0080/0984/2786/files/409186506_-1500x1500-f3a2c67_5a083ec5-dd74-45de-973c-945cf92aa768.jpg?v=1775672357",
+      "image": "/media/products/travelpro-platinum-elite-medium-check-in-spinner.jpg",
       "price": 450.0,
       "currency": "USD",
       "overall": "28 x 18.5 x 11.75 in",
@@ -336,7 +348,9 @@
         "price": null,
         "currency": null,
         "url": null
-      }
+      },
+      "image_width": 600,
+      "image_height": 600
     },
     {
       "id": "travelpro-platinum-elite-large-check-in-spinner",
@@ -349,7 +363,7 @@
       "category": "checked",
       "shell": "softside",
       "url": "https://travelpro.com/products/platinum®-elite-29-expandable-spinner",
-      "image": "https://cdn.shopify.com/s/files/1/0080/0984/2786/files/409186904_12-1500x1500-f3a2c67_84709794-21cf-492f-8aad-98585b62ae2b.jpg?v=1764387931",
+      "image": "/media/products/travelpro-platinum-elite-large-check-in-spinner.jpg",
       "price": 485.0,
       "currency": "USD",
       "overall": "32.5 x 21 x 13.25 in",
@@ -368,7 +382,9 @@
         "price": null,
         "currency": null,
         "url": null
-      }
+      },
+      "image_width": 600,
+      "image_height": 600
     },
     {
       "id": "travelpro-platinum-elite-medium-hardside-spinner",
@@ -381,7 +397,7 @@
       "category": "checked",
       "shell": "hardside",
       "url": "https://travelpro.com/products/platinum-elite-hardside-medium-check-in-luggage-expandable-spinner-suitcase",
-      "image": "https://cdn.shopify.com/s/files/1/0080/0984/2786/files/travelpro-platinum-elite-hardside-medium-check-in-spinner-aviator-navy-409269522-2.jpg?v=1776715135",
+      "image": "/media/products/travelpro-platinum-elite-medium-hardside-spinner.jpg",
       "price": 415.0,
       "currency": "USD",
       "overall": "27.5 x 17.5 x 11.75 in",
@@ -400,7 +416,9 @@
         "price": null,
         "currency": null,
         "url": null
-      }
+      },
+      "image_width": 600,
+      "image_height": 600
     },
     {
       "id": "travelpro-platinum-elite-large-hardside-spinner",
@@ -413,7 +431,7 @@
       "category": "checked",
       "shell": "hardside",
       "url": "https://travelpro.com/products/platinum-elite-hardside-large-check-in-luggage-expandable-spinner-suitcase",
-      "image": "https://cdn.shopify.com/s/files/1/0080/0984/2786/files/travelpro-platinum-elite-hardside-large-check-in-spinner-aviator-navy-409269922-1.jpg?v=1776715201",
+      "image": "/media/products/travelpro-platinum-elite-large-hardside-spinner.jpg",
       "price": 445.0,
       "currency": "USD",
       "overall": "30.5 x 19.5 x 12 in",
@@ -432,7 +450,9 @@
         "price": null,
         "currency": null,
         "url": null
-      }
+      },
+      "image_width": 600,
+      "image_height": 600
     },
     {
       "id": "travelpro-platinum-elite-underseat-tote",
@@ -445,7 +465,7 @@
       "category": "underseat",
       "shell": "softside",
       "url": "https://travelpro.com/products/platinum®-elite-underseat-tote",
-      "image": "https://cdn.shopify.com/s/files/1/0080/0984/2786/files/travelpro-platinum-elite-underseat-tote-true-navy-front-409240322-1.jpg?v=1791233796",
+      "image": "/media/products/travelpro-platinum-elite-underseat-tote.jpg",
       "price": 215.0,
       "currency": "USD",
       "overall": "10.25 x 16.5 x 7.5 in",
@@ -464,7 +484,9 @@
         "price": null,
         "currency": null,
         "url": null
-      }
+      },
+      "image_width": 600,
+      "image_height": 750
     },
     {
       "id": "travelpro-maxlite-5-carry-on-spinner",
@@ -477,7 +499,7 @@
       "category": "carry-on",
       "shell": "softside",
       "url": "https://travelpro.com/products/maxlite®-5-21-expandable-carry-on-spinner",
-      "image": "https://cdn.shopify.com/s/files/1/0080/0984/2786/files/401176101_3b650f9d-0c7c-4ded-b5cd-53af3a062809.jpg?v=1776802972",
+      "image": "/media/products/travelpro-maxlite-5-carry-on-spinner.jpg",
       "price": 148.0,
       "compare_at": 160.0,
       "currency": "USD",
@@ -496,7 +518,9 @@
         "price": null,
         "currency": null,
         "url": null
-      }
+      },
+      "image_width": 600,
+      "image_height": 600
     },
     {
       "id": "travelpro-maxlite-5-carry-on-rollaboard",
@@ -509,7 +533,7 @@
       "category": "carry-on",
       "shell": "softside",
       "url": "https://travelpro.com/products/maxlite®-5-22-expandable-carry-on-rollaboard®",
-      "image": "https://cdn.shopify.com/s/files/1/0080/0984/2786/files/401172201_d2198b97-e7bd-47f9-bc17-2393821711ef.jpg?v=1775250978",
+      "image": "/media/products/travelpro-maxlite-5-carry-on-rollaboard.jpg",
       "price": 138.0,
       "compare_at": 160.0,
       "currency": "USD",
@@ -528,7 +552,9 @@
         "price": null,
         "currency": null,
         "url": null
-      }
+      },
+      "image_width": 600,
+      "image_height": 600
     },
     {
       "id": "travelpro-maxlite-5-compact-carry-on-spinner",
@@ -541,7 +567,7 @@
       "category": "carry-on",
       "shell": "softside",
       "url": "https://travelpro.com/products/maxlite®-5-compact-carry-on-expandable-spinner",
-      "image": "https://cdn.shopify.com/s/files/1/0080/0984/2786/files/401176201G.jpg?v=1775251684",
+      "image": "/media/products/travelpro-maxlite-5-compact-carry-on-spinner.jpg",
       "price": 138.0,
       "compare_at": 160.0,
       "currency": "USD",
@@ -560,7 +586,9 @@
         "price": null,
         "currency": null,
         "url": null
-      }
+      },
+      "image_width": 600,
+      "image_height": 600
     },
     {
       "id": "travelpro-maxlite-5-international-carry-on-spinner",
@@ -573,7 +601,7 @@
       "category": "carry-on",
       "shell": "softside",
       "url": "https://travelpro.com/products/maxlite®-5-international-expandable-carry-on-spinner",
-      "image": "https://cdn.shopify.com/s/files/1/0080/0984/2786/files/401176701G.jpg?v=1775251893",
+      "image": "/media/products/travelpro-maxlite-5-international-carry-on-spinner.jpg",
       "price": 148.0,
       "compare_at": 160.0,
       "currency": "USD",
@@ -592,7 +620,9 @@
         "price": null,
         "currency": null,
         "url": null
-      }
+      },
+      "image_width": 600,
+      "image_height": 600
     },
     {
       "id": "travelpro-maxlite-5-medium-check-in-spinner",
@@ -605,7 +635,7 @@
       "category": "checked",
       "shell": "softside",
       "url": "https://travelpro.com/products/maxlite®-5-25-expandable-spinner",
-      "image": "https://cdn.shopify.com/s/files/1/0080/0984/2786/files/401176547_-1500x1500-f3a2c67_94316a1b-fd70-4136-aa37-1b76ead96170.jpg?v=1774534090",
+      "image": "/media/products/travelpro-maxlite-5-medium-check-in-spinner.jpg",
       "price": 178.0,
       "compare_at": 195.0,
       "currency": "USD",
@@ -624,7 +654,9 @@
         "price": null,
         "currency": null,
         "url": null
-      }
+      },
+      "image_width": 600,
+      "image_height": 600
     },
     {
       "id": "travelpro-maxlite-5-large-check-in-spinner",
@@ -637,7 +669,7 @@
       "category": "checked",
       "shell": "softside",
       "url": "https://travelpro.com/products/maxlite®-5-29-expandable-spinner",
-      "image": "https://cdn.shopify.com/s/files/1/0080/0984/2786/files/401176901_-1500x1500-f3a2c67_68e0b987-6d10-42cd-9c98-c0843cf35b8b.jpg?v=1741189974",
+      "image": "/media/products/travelpro-maxlite-5-large-check-in-spinner.jpg",
       "price": 208.0,
       "compare_at": 225.0,
       "currency": "USD",
@@ -656,7 +688,9 @@
         "price": null,
         "currency": null,
         "url": null
-      }
+      },
+      "image_width": 600,
+      "image_height": 600
     },
     {
       "id": "travelpro-maxlite-5-rolling-underseat",
@@ -669,7 +703,7 @@
       "category": "underseat",
       "shell": "softside",
       "url": "https://travelpro.com/products/maxlite®-5-rolling-underseat-carry-on",
-      "image": "https://cdn.shopify.com/s/files/1/0080/0984/2786/files/travelpro-maxlite-5-rolling-underseat-bag-black-front-401177701.jpg?v=1776190140",
+      "image": "/media/products/travelpro-maxlite-5-rolling-underseat.jpg",
       "price": 128.0,
       "compare_at": 135.0,
       "currency": "USD",
@@ -688,7 +722,9 @@
         "price": null,
         "currency": null,
         "url": null
-      }
+      },
+      "image_width": 600,
+      "image_height": 600
     },
     {
       "id": "travelpro-maxlite-laptop-backpack",
@@ -701,7 +737,7 @@
       "category": "backpack",
       "shell": "softside",
       "url": "https://travelpro.com/products/maxlite®-laptop-backpack",
-      "image": "https://cdn.shopify.com/s/files/1/0080/0984/2786/files/401220601__copy-1500x1500-f3a2c67.jpg?v=1726080893",
+      "image": "/media/products/travelpro-maxlite-laptop-backpack.jpg",
       "price": 98.0,
       "compare_at": 110.0,
       "currency": "USD",
@@ -720,7 +756,9 @@
         "price": null,
         "currency": null,
         "url": null
-      }
+      },
+      "image_width": 600,
+      "image_height": 750
     },
     {
       "id": "travelpro-crew-classic-carry-on-spinner",
@@ -733,7 +771,7 @@
       "category": "carry-on",
       "shell": "softside",
       "url": "https://travelpro.com/products/crew™-classic-carry-on-expandable-spinner",
-      "image": "https://cdn.shopify.com/s/files/1/0080/0984/2786/files/407246122_57399064-4cb7-47c3-9740-0e71ef43fa65.jpg?v=1775252103",
+      "image": "/media/products/travelpro-crew-classic-carry-on-spinner.jpg",
       "price": 238.0,
       "compare_at": 255.0,
       "currency": "USD",
@@ -752,7 +790,9 @@
         "price": null,
         "currency": null,
         "url": null
-      }
+      },
+      "image_width": 600,
+      "image_height": 600
     },
     {
       "id": "travelpro-crew-classic-compact-carry-on-spinner",
@@ -765,7 +805,7 @@
       "category": "carry-on",
       "shell": "softside",
       "url": "https://travelpro.com/products/crew™-classic-compact-carry-on-expandable-spinner",
-      "image": "https://cdn.shopify.com/s/files/1/0080/0984/2786/files/407246222_01.jpg?v=1775567718",
+      "image": "/media/products/travelpro-crew-classic-compact-carry-on-spinner.jpg",
       "price": 238.0,
       "compare_at": 255.0,
       "currency": "USD",
@@ -784,7 +824,9 @@
         "price": null,
         "currency": null,
         "url": null
-      }
+      },
+      "image_width": 600,
+      "image_height": 600
     },
     {
       "id": "travelpro-crew-classic-carry-on-rollaboard",
@@ -797,7 +839,7 @@
       "category": "carry-on",
       "shell": "softside",
       "url": "https://travelpro.com/products/crew™-classic-carry-on-rollaboard",
-      "image": "https://cdn.shopify.com/s/files/1/0080/0984/2786/files/407242222G_01_e42e2af7-ffc2-4762-8055-dffeebc82ed2.jpg?v=1775507062",
+      "image": "/media/products/travelpro-crew-classic-carry-on-rollaboard.jpg",
       "price": 228.0,
       "compare_at": 255.0,
       "currency": "USD",
@@ -816,7 +858,9 @@
         "price": null,
         "currency": null,
         "url": null
-      }
+      },
+      "image_width": 600,
+      "image_height": 600
     },
     {
       "id": "travelpro-crew-classic-medium-check-in-spinner",
@@ -829,7 +873,7 @@
       "category": "checked",
       "shell": "softside",
       "url": "https://travelpro.com/products/crew™-classic-medium-check-in-expandable-spinner",
-      "image": "https://cdn.shopify.com/s/files/1/0080/0984/2786/files/407246522-01-Crew-classic-patriot-Blue-medium-spinner.jpg?v=1775671752",
+      "image": "/media/products/travelpro-crew-classic-medium-check-in-spinner.jpg",
       "price": 268.0,
       "compare_at": 290.0,
       "currency": "USD",
@@ -848,7 +892,9 @@
         "price": null,
         "currency": null,
         "url": null
-      }
+      },
+      "image_width": 600,
+      "image_height": 600
     },
     {
       "id": "travelpro-crew-classic-large-check-in-spinner",
@@ -861,7 +907,7 @@
       "category": "checked",
       "shell": "softside",
       "url": "https://travelpro.com/products/crew™-classic-large-check-in-expandable-spinner",
-      "image": "https://cdn.shopify.com/s/files/1/0080/0984/2786/files/407246922_01-1500x1500-f3a2c67.jpg?v=1762274374",
+      "image": "/media/products/travelpro-crew-classic-large-check-in-spinner.jpg",
       "price": 298.0,
       "compare_at": 325.0,
       "currency": "USD",
@@ -880,7 +926,9 @@
         "price": null,
         "currency": null,
         "url": null
-      }
+      },
+      "image_width": 600,
+      "image_height": 600
     },
     {
       "id": "travelpro-crew-classic-rolling-underseat",
@@ -893,7 +941,7 @@
       "category": "underseat",
       "shell": "softside",
       "url": "https://travelpro.com/products/crew™-classic-rolling-underseat-carry-on",
-      "image": "https://cdn.shopify.com/s/files/1/0080/0984/2786/files/travelpro-crew-classic-rolling-underseat-carry-on-black-407247701.jpg?v=1776188249",
+      "image": "/media/products/travelpro-crew-classic-rolling-underseat.jpg",
       "price": 198.0,
       "compare_at": 215.0,
       "currency": "USD",
@@ -912,7 +960,9 @@
         "price": null,
         "currency": null,
         "url": null
-      }
+      },
+      "image_width": 600,
+      "image_height": 600
     },
     {
       "id": "travelpro-crew-classic-underseat-tote",
@@ -925,7 +975,7 @@
       "category": "underseat",
       "shell": "softside",
       "url": "https://travelpro.com/products/crew™-classic-underseat-tote",
-      "image": "https://cdn.shopify.com/s/files/1/0080/0984/2786/files/407240301_01.jpg?v=1793984694",
+      "image": "/media/products/travelpro-crew-classic-underseat-tote.jpg",
       "price": 108.0,
       "compare_at": 120.0,
       "currency": "USD",
@@ -944,7 +994,9 @@
         "price": null,
         "currency": null,
         "url": null
-      }
+      },
+      "image_width": 600,
+      "image_height": 750
     },
     {
       "id": "travelpro-essentials-packing-cubes-sml",
@@ -956,7 +1008,7 @@
       "family": "travelpro-accessories",
       "category": "packing-cube",
       "url": "https://travelpro.com/products/travelpro®-essentials™-3-pack-packing-cube-set-small-med-large",
-      "image": "https://cdn.shopify.com/s/files/1/0080/0984/2786/files/40218AK01_1-1500x1500-f3a2c67.jpg?v=1727473908",
+      "image": "/media/products/travelpro-essentials-packing-cubes-sml.jpg",
       "price": 45.0,
       "currency": "USD",
       "checked": "2026-11-15",
@@ -976,7 +1028,9 @@
         "price": null,
         "currency": null,
         "url": null
-      }
+      },
+      "image_width": 600,
+      "image_height": 750
     },
     {
       "id": "travelpro-essentials-packing-cubes-compressible",
@@ -988,7 +1042,7 @@
       "family": "travelpro-accessories",
       "category": "packing-cube",
       "url": "https://travelpro.com/products/travelpro®-essentials™-3-pack-expandable-compressible-packing-cube-set-m-l-xl",
-      "image": "https://cdn.shopify.com/s/files/1/0080/0984/2786/files/40218BE-1500x1500-f3a2c67.jpg?v=1727473811",
+      "image": "/media/products/travelpro-essentials-packing-cubes-compressible.jpg",
       "price": 70.0,
       "currency": "USD",
       "checked": "2026-11-15",
@@ -1008,7 +1062,9 @@
         "price": null,
         "currency": null,
         "url": null
-      }
+      },
+      "image_width": 600,
+      "image_height": 600
     },
     {
       "id": "travelpro-essentials-sparepack-backpack",
@@ -1020,7 +1076,7 @@
       "family": "travelpro-accessories",
       "category": "backpack",
       "url": "https://travelpro.com/products/travelpro®-essentials™-sparepack™-foldable-backpack-2-0",
-      "image": "https://cdn.shopify.com/s/files/1/0080/0984/2786/files/40218BM01_01-1500x1500-f3a2c67_c7c047a0-c179-49f7-8ca7-ee473d17bbf3.jpg?v=1727290482",
+      "image": "/media/products/travelpro-essentials-sparepack-backpack.jpg",
       "price": 50.0,
       "currency": "USD",
       "checked": "2026-11-15",
@@ -1040,7 +1096,9 @@
         "price": null,
         "currency": null,
         "url": null
-      }
+      },
+      "image_width": 600,
+      "image_height": 600
     },
     {
       "id": "level8-voyageur-carry-on-20",
@@ -1053,7 +1111,7 @@
       "category": "carry-on",
       "shell": "hardside",
       "url": "https://www.level8cases.com/products/voyageur-carry-on-20",
-      "image": "https://cdn.shopify.com/s/files/1/0029/3404/6831/files/Voyageur_carry-on_yellow.jpg?v=1760422649",
+      "image": "/media/products/level8-voyageur-carry-on-20.jpg",
       "price": 259.99,
       "currency": "USD",
       "variant": "Carry On 20''",
@@ -1072,7 +1130,9 @@
         "price": null,
         "currency": null,
         "url": null
-      }
+      },
+      "image_width": 600,
+      "image_height": 750
     },
     {
       "id": "level8-voyageur-checked-28",
@@ -1085,7 +1145,7 @@
       "category": "checked",
       "shell": "hardside",
       "url": "https://www.level8cases.com/products/large-luggage-with-wide-handle-level8-voyageur",
-      "image": "https://cdn.shopify.com/s/files/1/0029/3404/6831/products/40.jpg?v=1703756505",
+      "image": "/media/products/level8-voyageur-checked-28.jpg",
       "price": 329.99,
       "currency": "USD",
       "variant": "Checked 28''",
@@ -1104,7 +1164,9 @@
         "price": null,
         "currency": null,
         "url": null
-      }
+      },
+      "image_width": 600,
+      "image_height": 750
     },
     {
       "id": "level8-luminous-carry-on-20",
@@ -1117,7 +1179,7 @@
       "category": "carry-on",
       "shell": "hardside",
       "url": "https://www.level8cases.com/products/elegance-20-luggage",
-      "image": "https://cdn.shopify.com/s/files/1/0029/3404/6831/files/8861-07-new.jpg?v=1774511590",
+      "image": "/media/products/level8-luminous-carry-on-20.jpg",
       "price": 169.99,
       "currency": "USD",
       "variant": "Carry-On 20''",
@@ -1136,7 +1198,9 @@
         "price": null,
         "currency": null,
         "url": null
-      }
+      },
+      "image_width": 600,
+      "image_height": 750
     },
     {
       "id": "level8-luminous-checked-24",
@@ -1149,7 +1213,7 @@
       "category": "checked",
       "shell": "hardside",
       "url": "https://www.level8cases.com/products/elegance-luggage-24",
-      "image": "https://cdn.shopify.com/s/files/1/0029/3404/6831/files/1_1e92cd3f-1d5d-4911-9af7-559ced8d9c89.jpg?v=1780556850",
+      "image": "/media/products/level8-luminous-checked-24.jpg",
       "price": 209.99,
       "currency": "USD",
       "variant": "Checked 24\"",
@@ -1168,7 +1232,9 @@
         "price": null,
         "currency": null,
         "url": null
-      }
+      },
+      "image_width": 600,
+      "image_height": 750
     },
     {
       "id": "level8-hegent-carry-on-20",
@@ -1181,7 +1247,7 @@
       "category": "carry-on",
       "shell": "hardside",
       "url": "https://www.level8cases.com/products/hegent-carry-on-luggage-20",
-      "image": "https://cdn.shopify.com/s/files/1/0029/3404/6831/files/1_5a1f44ac-1215-4f09-bfdc-f305c546376e.jpg?v=1743389609",
+      "image": "/media/products/level8-hegent-carry-on-20.jpg",
       "price": 239.99,
       "currency": "USD",
       "variant": "Carry-On 20\"",
@@ -1200,7 +1266,9 @@
         "price": null,
         "currency": null,
         "url": null
-      }
+      },
+      "image_width": 600,
+      "image_height": 750
     },
     {
       "id": "level8-road-runner-carry-on-20",
@@ -1213,7 +1281,7 @@
       "category": "carry-on",
       "shell": "hardside",
       "url": "https://www.level8cases.com/products/level8-road-runner-carry-on-luggage-with-front-pocket-20",
-      "image": "https://cdn.shopify.com/s/files/1/0029/3404/6831/products/road_runner_carry_on_navy.jpg?v=1727336974",
+      "image": "/media/products/level8-road-runner-carry-on-20.jpg",
       "price": 189.99,
       "currency": "USD",
       "overall": "14.5 L x 9.6 W x 21.7 H in",
@@ -1232,7 +1300,9 @@
         "price": null,
         "currency": null,
         "url": null
-      }
+      },
+      "image_width": 600,
+      "image_height": 750
     },
     {
       "id": "level8-packing-cubes-4",
@@ -1244,7 +1314,7 @@
       "family": "level8-accessories",
       "category": "packing-cube",
       "url": "https://www.level8cases.com/products/level8-organizer-bag-set",
-      "image": "https://cdn.shopify.com/s/files/1/0029/3404/6831/files/8_3eaad736-57dc-480c-aca1-e3d2041d0b59.jpg?v=1721108987",
+      "image": "/media/products/level8-packing-cubes-4.jpg",
       "price": 49.99,
       "currency": "USD",
       "weight": "0.99 lb",
@@ -1264,7 +1334,9 @@
         "price": null,
         "currency": null,
         "url": null
-      }
+      },
+      "image_width": 600,
+      "image_height": 750
     },
     {
       "id": "level8-packing-cubes-6",
@@ -1276,7 +1348,7 @@
       "family": "level8-accessories",
       "category": "packing-cube",
       "url": "https://www.level8cases.com/products/packing-cube-travel-set-6-pack",
-      "image": "https://cdn.shopify.com/s/files/1/0029/3404/6831/files/4_fb521623-c69d-4340-82bc-7adcf930224f.jpg?v=1752025118",
+      "image": "/media/products/level8-packing-cubes-6.jpg",
       "price": 69.99,
       "currency": "USD",
       "weight": "1.39 lb",
@@ -1296,7 +1368,9 @@
         "price": null,
         "currency": null,
         "url": null
-      }
+      },
+      "image_width": 600,
+      "image_height": 750
     },
     {
       "id": "horizn-h5-essential",
@@ -1309,7 +1383,7 @@
       "category": "carry-on",
       "shell": "hardside",
       "url": "https://horizn-studios.com/products/h5-essential-night-blue",
-      "image": "https://cdn.shopify.com/s/files/1/1956/8795/files/H5_Essential_Night_Blue_Front_1.png?v=1786453643",
+      "image": "/media/products/horizn-h5-essential.jpg",
       "price": 333.0,
       "compare_at": 370.0,
       "currency": "EUR",
@@ -1328,7 +1402,9 @@
         "price": null,
         "currency": null,
         "url": null
-      }
+      },
+      "image_width": 600,
+      "image_height": 600
     },
     {
       "id": "horizn-h5-pro",
@@ -1341,7 +1417,7 @@
       "category": "carry-on",
       "shell": "hardside",
       "url": "https://horizn-studios.com/products/h5-night-blue-pro",
-      "image": "https://cdn.shopify.com/s/files/1/1956/8795/files/H5_Pro_Night_Blue_Front_70b62009-8cec-437c-ac79-16a120631f58.png?v=1756459897",
+      "image": "/media/products/horizn-h5-pro.jpg",
       "price": 351.0,
       "compare_at": 390.0,
       "currency": "EUR",
@@ -1360,7 +1436,9 @@
         "price": null,
         "currency": null,
         "url": null
-      }
+      },
+      "image_width": 600,
+      "image_height": 600
     },
     {
       "id": "horizn-h5-re",
@@ -1373,7 +1451,7 @@
       "category": "carry-on",
       "shell": "hardside",
       "url": "https://horizn-studios.com/products/h5-re-dark-slate",
-      "image": "https://cdn.shopify.com/s/files/1/1956/8795/files/RE-H5_Dark_Slate_Front.png?v=1757494120",
+      "image": "/media/products/horizn-h5-re.jpg",
       "price": 351.0,
       "compare_at": 390.0,
       "currency": "EUR",
@@ -1392,7 +1470,9 @@
         "price": null,
         "currency": null,
         "url": null
-      }
+      },
+      "image_width": 600,
+      "image_height": 600
     },
     {
       "id": "horizn-m5-pro",
@@ -1405,7 +1485,7 @@
       "category": "carry-on",
       "shell": "hardside",
       "url": "https://horizn-studios.com/products/m5-night-blue-pro",
-      "image": "https://cdn.shopify.com/s/files/1/1956/8795/files/M5_Pro_Night_Blue_Front_f5aa93e8-0752-4829-a308-47068be9a58d.png?v=1756460156",
+      "image": "/media/products/horizn-m5-pro.jpg",
       "price": 441.0,
       "compare_at": 490.0,
       "currency": "EUR",
@@ -1424,7 +1504,9 @@
         "price": null,
         "currency": null,
         "url": null
-      }
+      },
+      "image_width": 600,
+      "image_height": 600
     },
     {
       "id": "horizn-h6-essential",
@@ -1437,7 +1519,7 @@
       "category": "checked",
       "shell": "hardside",
       "url": "https://horizn-studios.com/products/h6-all-black-high-performance-hard-shell-check-in-size-m-essential",
-      "image": "https://cdn.shopify.com/s/files/1/1956/8795/files/H6_Essential_All_Black_Front_3aaada2d-dbc9-4482-aea4-281b6fdb38d4.png?v=1754945713",
+      "image": "/media/products/horizn-h6-essential.jpg",
       "price": 405.0,
       "compare_at": 450.0,
       "currency": "EUR",
@@ -1456,7 +1538,9 @@
         "price": null,
         "currency": null,
         "url": null
-      }
+      },
+      "image_width": 600,
+      "image_height": 600
     },
     {
       "id": "horizn-h7-pro",
@@ -1469,7 +1553,7 @@
       "category": "checked",
       "shell": "hardside",
       "url": "https://horizn-studios.com/products/h7-night-blue-pro",
-      "image": "https://cdn.shopify.com/s/files/1/1956/8795/files/H7_Pro_Night_Blue_Front_a82339ac-f3e2-4b0c-8028-2fe21e2e97f1.png?v=1756462792",
+      "image": "/media/products/horizn-h7-pro.jpg",
       "price": 495.0,
       "compare_at": 550.0,
       "currency": "EUR",
@@ -1488,7 +1572,9 @@
         "price": null,
         "currency": null,
         "url": null
-      }
+      },
+      "image_width": 600,
+      "image_height": 600
     },
     {
       "id": "stuart-monaco-weekender",
@@ -1500,7 +1586,7 @@
       "family": "stuart",
       "category": "weekender",
       "url": "https://stuartandlau.com/products/the-monaco-weekender-bag-navy-and-tan",
-      "image": "https://cdn.shopify.com/s/files/1/0541/2609/products/StuartandLau_TheMonacoWeekender_NavyandTan_01.jpg?v=1659450968",
+      "image": "/media/products/stuart-monaco-weekender.jpg",
       "price": 235.0,
       "compare_at": 395.0,
       "currency": "USD",
@@ -1520,7 +1606,9 @@
         "price": null,
         "currency": null,
         "url": null
-      }
+      },
+      "image_width": 600,
+      "image_height": 600
     },
     {
       "id": "stuart-tabitomo-duffel",
@@ -1532,7 +1620,7 @@
       "family": "stuart",
       "category": "duffel",
       "url": "https://stuartandlau.com/products/the-tabitomo-duffel-bag-black",
-      "image": "https://cdn.shopify.com/s/files/1/0541/2609/files/StuartandLau_TokyoCapsule_Duffle_036_8ec9f79d-47c1-4040-8ecd-5814fd7b7941.jpg?v=1753177041",
+      "image": "/media/products/stuart-tabitomo-duffel.jpg",
       "price": 300.0,
       "compare_at": 500.0,
       "currency": "USD",
@@ -1552,7 +1640,9 @@
         "price": null,
         "currency": null,
         "url": null
-      }
+      },
+      "image_width": 600,
+      "image_height": 600
     },
     {
       "id": "stuart-capstone-backpack",
@@ -1564,7 +1654,7 @@
       "family": "stuart",
       "category": "backpack",
       "url": "https://stuartandlau.com/products/capstone-backpack-gen-3-black",
-      "image": "https://cdn.shopify.com/s/files/1/0541/2609/files/Capstone_Backpack_019_BLACK.jpg?v=1700777099",
+      "image": "/media/products/stuart-capstone-backpack.jpg",
       "price": 335.0,
       "currency": "USD",
       "overall": "18.75 x 12.0 x 8.0 in",
@@ -1584,7 +1674,9 @@
         "price": null,
         "currency": null,
         "url": null
-      }
+      },
+      "image_width": 600,
+      "image_height": 600
     },
     {
       "id": "stuart-crosby-backpack",
@@ -1596,7 +1688,7 @@
       "family": "stuart",
       "category": "backpack",
       "url": "https://stuartandlau.com/products/crosby-backpack-black",
-      "image": "https://cdn.shopify.com/s/files/1/0541/2609/files/Crosby_Backpack_016_BLACK.jpg?v=1700777407",
+      "image": "/media/products/stuart-crosby-backpack.jpg",
       "price": 235.0,
       "currency": "USD",
       "overall": "18.5 x 12.5 x 7.0 in",
@@ -1616,7 +1708,9 @@
         "price": null,
         "currency": null,
         "url": null
-      }
+      },
+      "image_width": 600,
+      "image_height": 600
     },
     {
       "id": "away-the-carry-on",
@@ -1629,7 +1723,7 @@
       "category": "carry-on",
       "shell": "hardside",
       "url": "https://www.awaytravel.com/products/carry-on-jet-black",
-      "image": "https://cdn.shopify.com/s/files/1/0664/7418/0792/files/95310acf-237d-4762-9619-f899a41073f5_20b2cb4b-50cc-41ed-b8f1-3b2b152ad4a1.jpg?v=1773689166",
+      "image": "/media/products/away-the-carry-on.jpg",
       "price": 275.0,
       "currency": "USD",
       "variant": "Jet Black",
@@ -1648,7 +1742,9 @@
         "price": null,
         "currency": null,
         "url": null
-      }
+      },
+      "image_width": 600,
+      "image_height": 500
     },
     {
       "id": "away-the-bigger-carry-on",
@@ -1661,7 +1757,7 @@
       "category": "carry-on",
       "shell": "hardside",
       "url": "https://www.awaytravel.com/products/bigger-carry-on-jet-black",
-      "image": "https://cdn.shopify.com/s/files/1/0664/7418/0792/files/cf3303fe-e80b-44f9-b9a2-b79fc96a6c70_926df0f0-2031-419f-ae90-9832890ea8e5.jpg?v=1773689166",
+      "image": "/media/products/away-the-bigger-carry-on.jpg",
       "price": 295.0,
       "currency": "USD",
       "variant": "Jet Black",
@@ -1680,7 +1776,9 @@
         "price": null,
         "currency": null,
         "url": null
-      }
+      },
+      "image_width": 600,
+      "image_height": 500
     },
     {
       "id": "monos-carry-on-pro",
@@ -1693,7 +1791,7 @@
       "category": "carry-on",
       "shell": "hardside",
       "url": "https://monos.com/products/carry-on-pro",
-      "image": "https://cdn.shopify.com/s/files/1/0032/2446/9568/products/Collection_Luggage_CarryOn_Pro_DesertTaupe_a7b9e470-b321-4314-82a0-0a73918adb68.png?v=1774904828",
+      "image": "/media/products/monos-carry-on-pro.jpg",
       "price": 295.0,
       "currency": "USD",
       "overall": "22 H x 14 W x 9 D in",
@@ -1712,7 +1810,9 @@
         "price": null,
         "currency": null,
         "url": null
-      }
+      },
+      "image_width": 600,
+      "image_height": 600
     },
     {
       "id": "beis-carry-on-roller",
@@ -1725,7 +1825,7 @@
       "category": "carry-on",
       "shell": "hardside",
       "url": "https://beistravel.com/products/the-carry-on-roller-in-black",
-      "image": "https://cdn.shopify.com/s/files/1/0032/3423/4479/files/BEIS180802-TheCarryOnRoller-Black-Product-0740_831a8784-119d-4690-bbb1-09962b702f27.jpg?v=1783368076",
+      "image": "/media/products/beis-carry-on-roller.jpg",
       "price": 268.0,
       "currency": "USD",
       "variant": "Black",
@@ -1744,7 +1844,9 @@
         "price": null,
         "currency": null,
         "url": null
-      }
+      },
+      "image_width": 600,
+      "image_height": 900
     },
     {
       "id": "calpak-hue-carry-on",
@@ -1757,7 +1859,7 @@
       "category": "carry-on",
       "shell": "hardside",
       "url": "https://www.calpaktravel.com/products/hue-carry-on-luggage",
-      "image": "https://cdn.shopify.com/s/files/1/0941/4996/files/LHU1020_Carry-On_HAZEL_1WEB.jpg?v=1770839681",
+      "image": "/media/products/calpak-hue-carry-on.jpg",
       "price": 172.0,
       "compare_at": 215.0,
       "currency": "USD",
@@ -1776,7 +1878,9 @@
         "price": null,
         "currency": null,
         "url": null
-      }
+      },
+      "image_width": 600,
+      "image_height": 800
     },
     {
       "id": "briggs-riley-baseline-essential-22",
@@ -1788,7 +1892,7 @@
       "family": "briggs",
       "category": "carry-on",
       "url": "https://www.briggs-riley.com/products/essential-carry-on-spinner",
-      "image": "https://cdn.shopify.com/s/files/1/0141/2779/2186/files/BLU122CXSP-4f_4.jpg?v=1774477904",
+      "image": "/media/products/briggs-riley-baseline-essential-22.jpg",
       "price": 729.0,
       "currency": "USD",
       "checked": "2026-11-15",
@@ -1808,7 +1912,9 @@
         "price": null,
         "currency": null,
         "url": null
-      }
+      },
+      "image_width": 600,
+      "image_height": 600
     },
     {
       "id": "samsonite-freeform",

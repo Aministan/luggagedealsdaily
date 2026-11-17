@@ -11,6 +11,7 @@ import html
 import json
 import os
 import re
+import shutil
 import urllib.parse
 
 import links
@@ -226,14 +227,15 @@ h2{font-size:22px;line-height:1.25}
 .meta{font-size:13px;color:#6c655d}
 .btn{display:inline-block;text-align:center;background:#14324a;color:#fff;border-radius:10px;padding:12px 16px;text-decoration:none;font-weight:700}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px}
-.card{background:#fff;border:1px solid #e4ddd2;border-radius:14px;padding:12px;display:flex;flex-direction:column}
-.card img{width:100%;height:180px;object-fit:contain;background:#fff;margin-top:10px}
+.card{background:#fff;border:1px solid #e4ddd2;border-radius:14px;padding:12px;display:flex;flex-direction:column;min-width:0}
+.card img{display:block;width:100%;max-width:100%;height:190px;object-fit:contain;object-position:center;background:#f3efe8;border-radius:10px;margin-top:10px}
 .brand{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:#7a7480}
 .nm{font-weight:650;margin:2px 0 6px}
+.nm a{color:inherit;text-decoration:none}
 .card .btn{margin-top:8px}
 .box{background:#fff;border:1px solid #e4ddd2;border-radius:14px;padding:16px;margin:18px 0}
 .hero-photo{background:#fff;border:1px solid #e4ddd2;border-radius:14px;padding:12px;margin:0 0 16px}
-.hero-photo img{width:100%;max-width:420px;height:auto}
+.hero-photo img{display:block;width:100%;max-width:420px;height:auto;object-fit:contain;background:#f3efe8;border-radius:10px}
 table{width:100%;border-collapse:collapse;background:#fff}
 th,td{text-align:left;padding:10px;border-bottom:1px solid #eee;vertical-align:top}
 .chips a{display:inline-block;margin:4px;padding:4px 10px;border-radius:99px;background:#fff;border:1px solid #e3ddd6;text-decoration:none;font-size:14px}
@@ -252,6 +254,10 @@ footer{max-width:1100px;margin:20px auto;padding:16px;font-size:13px;color:#5c56
   main{padding:10px 12px}
   h1{font-size:22px}
   .price{font-size:24px}
+  .grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+  .card{padding:10px}
+  .card img{height:148px}
+  .card .btn{padding:10px 8px;font-size:14px}
   table,thead,tbody,tr,td{display:block}
   thead{display:none}
   td{border:0;padding:4px 10px}
@@ -383,8 +389,10 @@ def product_ld(product):
         "description": product_description(product),
         "brand": {"@type": "Brand", "name": product["brand"]},
     }
-    if product.get("image"):
-        data["image"] = product["image"]
+    hosted = hosted_image(product)
+    if hosted:
+        src, _, _ = hosted
+        data["image"] = src if src.startswith("http") else f"{BASE}{src}"
     price = resolved_price(product)
     url = plain_product_url(product)
     if price is not None and url:
@@ -449,13 +457,68 @@ def lead(product):
     )
 
 
-def photo(product):
-    if not product.get("image"):
-        return "<p class='meta'>No manufacturer photo is stored for this page.</p>"
+def jpeg_size(path):
+    """Width and height from a JPEG SOF marker. The site build does not import Pillow."""
+    with open(path, "rb") as handle:
+        data = handle.read()
+    if len(data) < 4 or data[:2] != b"\xff\xd8":
+        raise SystemExit(f"{path} is not a jpeg")
+    i = 2
+    while i + 9 < len(data):
+        if data[i] != 0xFF:
+            i += 1
+            continue
+        marker = data[i + 1]
+        if marker in (0xD8, 0xD9) or 0xD0 <= marker <= 0xD7 or marker == 0x01:
+            if marker == 0xD9:
+                break
+            i += 2
+            continue
+        if i + 4 > len(data):
+            break
+        if marker in (0xC0, 0xC1, 0xC2):
+            height = int.from_bytes(data[i + 5:i + 7], "big")
+            width = int.from_bytes(data[i + 7:i + 9], "big")
+            if width > 0 and height > 0:
+                return width, height
+            break
+        length = int.from_bytes(data[i + 2:i + 4], "big")
+        if length < 2:
+            break
+        i += 2 + length
+    raise SystemExit(f"{path}: no jpeg size")
+
+
+def hosted_image(product):
+    """Photo saved from the merchant product page. A remote URL is never emitted."""
+    filename = product["id"] + ".jpg"
+    disk = os.path.join(ROOT, "media", "products", filename)
+    if not os.path.isfile(disk):
+        return None
+    width, height = jpeg_size(disk)
+    href = f"{PREFIX}/media/products/{filename}" if PREFIX else f"/media/products/{filename}"
+    return href, width, height
+
+
+def product_img(product, eager=False):
+    hosted = hosted_image(product)
+    if not hosted:
+        return ""
+    src, width, height = hosted
     alt = display_name(product)
+    extra = "fetchpriority='high'" if eager else "loading='lazy'"
     return (
-        f"<figure class='hero-photo'><img src='{e(product['image'])}' alt='{e(alt)}' width='800' height='800' "
-        f"fetchpriority='high' decoding='async'><figcaption class='meta'>Photo from the {e(merchant_name(product))} product page.</figcaption></figure>"
+        f"<img {extra} decoding='async' src='{e(src)}' alt='{e(alt)}' width='{width}' height='{height}'>"
+    )
+
+
+def photo(product):
+    img = product_img(product, eager=True)
+    if not img:
+        return "<p class='meta'>No manufacturer photo is stored for this page.</p>"
+    return (
+        f"<figure class='hero-photo'>{img}"
+        f"<figcaption class='meta'>Photo from the {e(merchant_name(product))} product page.</figcaption></figure>"
     )
 
 
@@ -464,9 +527,7 @@ def card(product, placement="grid"):
     price = f"<div class='price' style='font-size:22px'>{e(shown)}</div>" if shown else "<div class='meta'>Check today's price</div>"
     was = compare_text(product)
     was_html = f"<div class='meta'>Compare-at {e(was)}</div>" if was else ""
-    img = ""
-    if product.get("image"):
-        img = f"<img loading='lazy' decoding='async' src='{e(product['image'])}' alt='{e(display_name(product))}' width='400' height='400'>"
+    img = product_img(product)
     internal = site_href(f"luggage/{product['id']}")
     return (
         f"<article class='card'><div class='brand'>{e(product['brand'])}</div>"
@@ -1047,6 +1108,9 @@ def black_friday_page():
         "Dollar gaps are listed before euro gaps. Nothing here is a predicted holiday percent off.</p>"
         "<table><thead><tr><th>Model</th><th>Listed price</th><th>Compare-at</th><th>Gap</th><th></th></tr></thead><tbody>"
         + "".join(rank_rows) + "</tbody></table>"
+        + "<h2>Deal cards</h2>"
+        + "<p class='sub'>The same models as the table. Each photo is the image from that merchant's product page.</p>"
+        + "<div class='grid' id='deal-cards'>" + "".join(card(p, "card") for p in ranked) + "</div>"
         + sections
         + "<h2>What to expect on Black Friday</h2>"
         "<p>Luggage prices often move from Black Friday through Cyber Monday, sometimes more than once. "
@@ -1436,17 +1500,53 @@ def audit():
         raise SystemExit("black friday page missing FAQPage")
     if "What to expect on Black Friday" not in bf:
         raise SystemExit("black friday page missing the expectations section")
+    ranked = deals_with_savings()
+    cards = re.findall(r"<article class='card'>(.*?)</article>", bf)
+    if len(cards) != len(ranked):
+        raise SystemExit(f"black friday cards {len(cards)} != deals {len(ranked)}")
+    pictured = 0
+    for chunk in cards:
+        imgs = re.findall(r"<img\b[^>]*>", chunk)
+        if not imgs:
+            continue
+        pictured += 1
+        tag = imgs[0]
+        if "loading='lazy'" not in tag or " width='" not in tag or " height='" not in tag or " alt='" not in tag:
+            raise SystemExit(f"black friday card image is missing alt, size, or lazy: {tag}")
+    expected = sum(1 for product in ranked if hosted_image(product))
+    if pictured != expected:
+        raise SystemExit(f"black friday photos {pictured} != hosted images {expected}")
+    for src in re.findall(r"<img\b[^>]*\bsrc='([^']+)'", bf):
+        if links.is_tracking_url(src):
+            raise SystemExit(f"black friday image is a tracking URL: {src}")
+        rel = src
+        if PREFIX and rel.startswith(PREFIX + "/"):
+            rel = rel[len(PREFIX):]
+        rel = rel.lstrip("/")
+        if not rel.startswith("media/products/") or not os.path.isfile(os.path.join(OUT, rel)):
+            raise SystemExit(f"black friday image is not a hosted file: {src}")
     home_html = open(os.path.join(OUT, "index.html"), encoding="utf-8").read()
     if site_href("black-friday-luggage-deals") not in home_html or "nav-bf" not in home_html:
         raise SystemExit("home or nav is missing the Black Friday link")
     print(f"built {deal_pages} luggage pages, {len(PAGES)} indexable URLs, origin {BASE}{PREFIX}/")
 
 
+def copy_product_images():
+    src = os.path.join(ROOT, "media", "products")
+    dst = os.path.join(OUT, "media", "products")
+    if not os.path.isdir(src):
+        return
+    os.makedirs(dst, exist_ok=True)
+    for name in os.listdir(src):
+        if name.endswith(".jpg"):
+            shutil.copyfile(os.path.join(src, name), os.path.join(dst, name))
+
+
 def main():
     if os.path.isdir(OUT):
-        import shutil
         shutil.rmtree(OUT)
     os.makedirs(OUT, exist_ok=True)
+    copy_product_images()
     for product in PRODUCTS:
         render_product(product)
     category_indexes()
