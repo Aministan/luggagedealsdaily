@@ -321,6 +321,7 @@ def page(path, title, desc, body, jsonld=None, index=True, crumbs_html=""):
         f'<a href="{site_href("brands")}">Brands</a>'
     )
     doc = f"""<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="fo-verify" content="24c27389-b0a3-402f-b1e1-7e6cd9777fe9" />
 {robots}<title>{e(title)}</title><meta name="description" content="{e(desc)}"><link rel="canonical" href="{e(url)}">
 <meta property="og:type" content="website"><meta property="og:site_name" content="{e(NAME)}">
 <meta property="og:title" content="{e(title)}"><meta property="og:description" content="{e(desc)}">
